@@ -93,8 +93,8 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 10px 0;
-    margin-bottom: 26px;
+    gap: 4px 0;
+    margin-bottom: 18px;
   }
   .icons a, .icons span {
     flex: 0 0 25%;
@@ -414,10 +414,10 @@
   /* Sidebar */
   .sidebar {
     position: sticky; top: 0; height: 100vh; overflow-y: auto;
-    background: var(--navy); color: #d7e0ef; padding: 40px 24px 32px;
+    background: var(--navy); color: #d7e0ef; padding: 30px 24px 24px;
   }
   .photo {
-    width: 168px; height: 168px; border-radius: 50%;
+    width: 148px; height: 148px; border-radius: 50%;
     border: 4px solid var(--navy); box-shadow: 0 0 0 2px var(--gold);
   }
   .name { color: #fff; font-family: var(--serif); font-weight: 600; font-size: 1.75rem; letter-spacing: 0; }
@@ -430,7 +430,7 @@
   .icons a:hover { background: rgba(255, 255, 255, .08); }
   nav ul { border-top: 1px solid rgba(255, 255, 255, .12); }
   nav li { border-bottom: 1px solid rgba(255, 255, 255, .07); }
-  nav a { color: #d7e0ef; text-align: left; padding: 11px 16px; border-left: 3px solid transparent; }
+  nav a { color: #d7e0ef; text-align: left; padding: 8px 16px; border-left: 3px solid transparent; }
   nav a:hover { color: #fff; background: rgba(255, 255, 255, .05); }
   nav a.active { color: #fff; border-left-color: var(--gold); background: rgba(255, 255, 255, .07); }
   .sidebar a:focus-visible { outline-color: var(--gold); }
@@ -547,10 +547,10 @@
       <ul>
         <li><a href="#home" data-page="home">Home</a></li>
         <li><a href="#research" data-page="research">Research</a></li>
-        <li><a href="#teaching" data-page="teaching">Teaching</a></li>
-        <li><a href="#supervising" data-page="supervising">Supervising</a></li>
-        <li><a href="#projects" data-page="projects">Projects</a></li>
         <li><a href="#publications" data-page="publications">Publications</a></li>
+        <li><a href="#projects" data-page="projects">Projects</a></li>
+        <li><a href="#teaching" data-page="teaching">Teaching</a></li>
+        <li><a href="#cv" data-page="cv">CV</a></li>
         <li><a href="#gallery" data-page="gallery">Gallery</a></li>
         <li><a href="#contact" data-page="contact">Contact</a></li>
       </ul>
@@ -574,17 +574,15 @@
     <!-- ========== HOME ========== -->
     <section id="home">
       <h2>Biography</h2>
-      <p>Saifullah Memon is a PhD researcher in Electrical Engineering and Informatics at the Budapest University of Technology and Economics (BME), Hungary, where he holds a Stipendium Hungaricum scholarship. He is a member of the Speech Technology and Smart Interactions Laboratory (SmartLab) in the Department of Telecommunications and Artificial Intelligence (TMIT), a group working on speech synthesis and speech technology. His research focuses on neural speech decoding: using deep learning to turn intracranial EEG (iEEG) and EEG signals into speech. His work explores deep learning models for speech decoding, self-supervised representation learning for label-efficient decoding, and the reliable evaluation of imagined speech decoding systems, with the long-term goal of building practical brain–computer interfaces that can restore communication.</p>
-      <p>Before his PhD, he earned an MSc in Mechatronics Engineering from Óbuda University, Budapest, and a BE in Electronics Engineering from Mehran University of Engineering and Technology, Pakistan. He then spent three years as a Lecturer in Computer Systems Engineering at Balochistan University of Engineering and Technology (BUET), Pakistan.</p>
-      <p>At BME, he supports teaching in Deep Learning, Infocommunication and Speech Information Systems, and supervises master's students in the project lab. His first paper was published at SPECOM 2026 (Springer LNCS), and three journal articles are under review.</p>
+      <p>I am a PhD researcher in Electrical Engineering and Informatics at the Budapest University of Technology and Economics (BME), Hungary, and a member of the Speech Technology and Smart Interactions Laboratory (SmartLab) in the Department of Telecommunications and Artificial Intelligence (TMIT), a group working on speech synthesis and speech technology.</p>
+      <p>My research focuses on neural speech decoding: using deep learning to turn intracranial EEG (iEEG) and EEG signals into speech. I work on lightweight decoders, on learning from limited labelled data, and on the reliable evaluation of imagined speech decoding, with the long-term goal of brain–computer interfaces that can restore communication.</p>
+      <p>Before my PhD, I earned an MSc in Mechatronics Engineering from Óbuda University, Budapest, and a BE in Electronics Engineering from Mehran University of Engineering and Technology, Pakistan, and spent three years as a Lecturer in Computer Systems Engineering at Balochistan University of Engineering and Technology (BUET), Pakistan. At BME, I support teaching in Deep Learning, Infocommunication and Speech Information Systems, and supervise master's students in the project lab.</p>
 
       <h3>News</h3>
       <ul class="news">
-        <li><span class="date">2026</span><span><strong>Neural Decoding of Imagined Speech from Scalp EEG: A Review of Deep Learning Architectures, Datasets, and Open Challenges</strong><br><em>AI, MDPI</em><br><span class="news-auth">Saifullah Memon, Mohammed Salah Al-Radhi</span></span></li>
-        <li><span class="date">2026</span><span><strong>A Lightweight LSTM-Based iEEG-to-Speech Decoder with Event-Level Unseen Neural Pattern Detection</strong><br><em>Speech and Computer (SPECOM 2026), Springer LNCS</em><br><span class="news-auth">Saifullah Memon, Mohammed Salah Al-Radhi</span></span></li>
-        <li><span class="date">2026</span><span><strong>Masked Self-Supervised Representation Learning for Label-Efficient Speech Decoding from Intracranial EEG</strong><br><em>Expert Systems with Applications, Elsevier</em><br><span class="news-auth">Saifullah Memon, Mohammed Salah Al-Radhi</span></span></li>
-        <li><span class="date">2026</span><span><strong>EEG-Based Imagined Speech Decoding Beyond Accuracy: A Systematic Review of Evaluation Validity, Cross-Subject Generalization, and Translational Readiness</strong><br><em>Neuroscience Informatics</em><br><span class="news-auth">Mohammed Salah Al-Radhi, Saifullah Memon</span></span></li>
-        <li><span class="date">2025</span><span><strong>PhD started at BME</strong><br>Began doctoral studies in Electrical Engineering and Informatics with a Stipendium Hungaricum scholarship.</span></li>
+        <li><span class="date">2026</span><span><strong>Presented at SPECOM 2026 in Ohrid, North Macedonia</strong><br>A Lightweight LSTM-Based iEEG-to-Speech Decoder with Event-Level Unseen Neural Pattern Detection<br><em>Speech and Computer (SPECOM 2026), Springer LNCS</em><br><span class="news-auth">Saifullah Memon, Mohammed Salah Al-Radhi</span></span></li>
+        <li><span class="date">2026</span><span><strong>Three journal articles submitted</strong><br>To <em>Expert Systems with Applications</em>, <em>Neuroscience Informatics</em> and <em>AI</em> (MDPI). See <a href="#publications">Publications</a>.</span></li>
+        <li><span class="date">2025</span><span><strong>PhD started at BME</strong><br>Began doctoral studies in Electrical Engineering and Informatics and joined SmartLab at TMIT.</span></li>
       </ul>
 
       <h3>Research Interests</h3>
@@ -592,102 +590,9 @@
         <li>Neural speech decoding (iEEG / EEG)</li>
         <li>Brain–computer interfaces</li>
         <li>Deep learning models</li>
-        <li>Self-supervised &amp; label-efficient learning</li>
+        <li>Learning from limited labelled data</li>
         <li>Biomedical &amp; neural signal processing</li>
-        <li>Evaluation validity &amp; cross-subject generalisation</li>
-      </ul>
-
-      <h3>Education</h3>
-      <div class="entry">
-        <div class="entry-head"><span class="entry-title">PhD in Electrical Engineering and Informatics</span><span class="entry-date">2025 – Present</span></div>
-        <div class="entry-sub">Budapest University of Technology and Economics (BME), Budapest, Hungary</div>
-        <ul>
-          <li>Research topic: Neural speech decoding using deep learning approaches</li>
-          <li>Stipendium Hungaricum Scholarship</li>
-        </ul>
-      </div>
-      <div class="entry">
-        <div class="entry-head"><span class="entry-title">MSc in Mechatronics Engineering</span><span class="entry-date">2019</span></div>
-        <div class="entry-sub">Óbuda University, Bánki Donát Faculty of Mechanical and Safety Engineering, Budapest, Hungary</div>
-        <ul>
-          <li>Thesis: Effect of electromigration on the mechanical behaviour of solder interconnects</li>
-          <li>Stipendium Hungaricum Scholarship</li>
-        </ul>
-      </div>
-      <div class="entry">
-        <div class="entry-head"><span class="entry-title">BE in Electronics Engineering</span><span class="entry-date">2016</span></div>
-        <div class="entry-sub">Mehran University of Engineering and Technology, Jamshoro, Pakistan</div>
-        <ul>
-          <li>Thesis: FPGA-based condition monitoring system for industrial motors</li>
-        </ul>
-      </div>
-
-      <h3>Academic Experience</h3>
-      <div class="entry">
-        <div class="entry-head"><span class="entry-title">Teaching Assistant</span><span class="entry-date">2025 – Present</span></div>
-        <div class="entry-sub">Budapest University of Technology and Economics (BME), Budapest, Hungary</div>
-      </div>
-      <div class="entry">
-        <div class="entry-head"><span class="entry-title">Lecturer, Department of Computer Systems Engineering</span><span class="entry-date">2022 – 2025</span></div>
-        <div class="entry-sub">Balochistan University of Engineering and Technology (BUET), Khuzdar, Pakistan</div>
-        <ul>
-          <li>Taught undergraduate courses in computer systems engineering</li>
-          <li>Supervised final-year engineering projects from proposal to completion</li>
-          <li>Coordinated departmental activities and led the Prime Minister's Laptop Scheme for students</li>
-        </ul>
-      </div>
-
-      <h3>Honours and Awards</h3>
-      <ul class="plain">
-        <li><strong>Stipendium Hungaricum Scholarship</strong>, Government of Hungary — PhD studies (2025)</li>
-        <li><strong>Stipendium Hungaricum Scholarship</strong>, Government of Hungary — MSc studies (2016)</li>
-      </ul>
-
-      <h3>Conferences and Events</h3>
-      <ul class="plain">
-        <li>SPECOM 2026 — International Conference on Speech and Computer</li>
-        <li>International Workshop on Embedded Systems and Their Applications</li>
-        <li>Micro Mechatronics Conference, Hungary</li>
-        <li>Metal Cup Concept — Industry 4.0 event, Russia</li>
-        <li>LED Hackathon, organised by Tangram and Óbuda University, Hungary</li>
-      </ul>
-
-      <h3>Skills</h3>
-      <div class="skill-group">
-        <h4>Programming and tools</h4>
-        <ul class="skills">
-          <li><span class="logo"><img src="assets/logos/python.svg" alt=""></span><span>Python<small>Data analysis, ML, deep learning</small></span></li>
-          <li><span class="logo"><img src="assets/logos/matlab.svg" alt=""></span><span>MATLAB<small>Signal processing, modelling</small></span></li>
-          <li><span class="logo"><i class="fa-solid fa-sitemap"></i></span><span>Simulink<small>Simulation and control</small></span></li>
-        </ul>
-      </div>
-      <div class="skill-group">
-        <h4>Machine learning</h4>
-        <ul class="skills">
-          <li><span class="logo"><i class="fa-solid fa-brain"></i></span><span>Deep learning</span></li>
-        </ul>
-      </div>
-      <div class="skill-group">
-        <h4>Signals</h4>
-        <ul class="skills">
-          <li><span class="logo"><i class="fa-solid fa-wave-square"></i></span><span>Neural signal processing<small>iEEG and EEG</small></span></li>
-          <li><span class="logo"><i class="fa-solid fa-heart-pulse"></i></span><span>Biomedical signal processing</span></li>
-        </ul>
-      </div>
-      <div class="skill-group">
-        <h4>Engineering</h4>
-        <ul class="skills">
-          <li><span class="logo"><i class="fa-solid fa-microchip"></i></span><span>FPGA design</span></li>
-          <li><span class="logo"><i class="fa-solid fa-memory"></i></span><span>Embedded systems</span></li>
-          <li><span class="logo"><i class="fa-solid fa-plug"></i></span><span>Hardware–software integration</span></li>
-          <li><span class="logo"><i class="fa-solid fa-gears"></i></span><span>Automation and control</span></li>
-        </ul>
-      </div>
-
-      <h3>Certifications</h3>
-      <ul class="stickers">
-        <li class="sticker"><span class="seal"><img src="assets/logos/coursera.svg" alt=""></span><span>Supervised Machine Learning: Regression and Classification<small>DeepLearning.AI &amp; Stanford University, Coursera · 2025</small></span></li>
-        <li class="sticker"><span class="seal"><i class="fa-solid fa-helmet-safety"></i></span><span>NEBOSH International General Certificate<small>Occupational Health and Safety · NEBOSH, UK</small></span></li>
+        <li>Reliable evaluation across people</li>
       </ul>
 
     </section>
@@ -746,7 +651,7 @@
         <div class="direction">
           <i class="fa-solid fa-tags"></i>
           <h4>Learning from less labelled data</h4>
-          <p>Masked self-supervised learning, so decoders need fewer labelled recordings to train.</p>
+          <p>Methods that need fewer labelled recordings to train a decoder.</p>
           <span class="badge review status">Under review</span>
         </div>
         <div class="direction">
@@ -760,7 +665,7 @@
 
     <!-- ========== TEACHING ========== -->
     <section id="teaching">
-      <h2>Teaching</h2>
+      <h2>Teaching &amp; Supervision</h2>
 
       <h3>Budapest University of Technology and Economics (BME)</h3>
       <p class="entry-sub" style="margin-top:-6px">2025 – Present</p>
@@ -780,24 +685,19 @@
         <div class="entry-head"><span class="entry-title">Undergraduate courses in Computer Systems Engineering</span><span class="entry-date">Lecturer</span></div>
         <!-- Add course names here, e.g. <ul><li>Digital Logic Design</li></ul> -->
       </div>
+
+      <h3>Supervision</h3>
+      <div class="card">
+        <div class="entry-head"><span class="entry-title">Master's students, project lab</span><span class="entry-date">BME, 2025 – Present</span></div>
+        <div class="entry-sub">Project-lab topics in speech and neural signal processing.</div>
+        <!-- Add students here (with their permission) -->
+      </div>
+      <div class="card">
+        <div class="entry-head"><span class="entry-title">Final-year undergraduate projects</span><span class="entry-date">BUET, 2022 – 2025</span></div>
+        <div class="entry-sub">Computer systems engineering projects, supervised from proposal to completion.</div>
+      </div>
     </section>
 
-    <!-- ========== SUPERVISING ========== -->
-    <section id="supervising">
-      <h2>Supervising</h2>
-
-      <h3>BME — Master's students (project lab)</h3>
-      <p class="entry-sub" style="margin-top:-6px">2025 – Present</p>
-      <p>Supervision of master's students working on project-lab topics in speech and neural signal processing.</p>
-      <!-- Add students here (with their permission), e.g.
-      <div class="card"><div class="entry-head"><span class="entry-title">Student Name</span><span class="entry-date">2026</span></div>
-      <div class="entry-sub">Project title</div></div> -->
-
-      <h3>BUET — Final-year undergraduate projects</h3>
-      <p class="entry-sub" style="margin-top:-6px">2022 – 2025</p>
-      <p>Supervised final-year engineering projects in computer systems engineering, from proposal to completion.</p>
-      <!-- Add project titles here -->
-    </section>
 
     <!-- ========== PROJECTS ========== -->
     <section id="projects">
@@ -806,10 +706,12 @@
       <div class="card">
         <div class="entry-head"><span class="entry-title">Neural Speech Decoding from Intracranial EEG</span><span class="entry-date">2025 – Present</span></div>
         <div class="entry-sub">PhD research, BME</div>
-        <p style="margin:10px 0 0">Deep learning models that decode speech from iEEG signals, including a lightweight LSTM-based iEEG-to-speech decoder with event-level detection of unseen neural patterns, and masked self-supervised representation learning for label-efficient decoding.</p>
-        <ul class="tags kw"><li>iEEG</li><li>EEG</li><li>LSTM</li><li>Self-supervised learning</li><li>Python</li><li>BCI</li></ul>
+        <p style="margin:10px 0 0">Deep learning models that decode speech from iEEG signals: a lightweight decoder that can flag brain activity it has not seen before, and methods that learn from limited labelled data.</p>
+        <ul class="tags kw"><li>iEEG</li><li>EEG</li><li>Deep learning</li><li>Python</li><li>BCI</li></ul>
+        <p class="pub-links" style="margin-top:12px"><a class="pub-btn" href="#research">How it works</a></p>
       </div>
 
+      <h3>Earlier projects</h3>
       <div class="card">
         <div class="entry-head"><span class="entry-title">Electromigration in Solder Interconnects</span><span class="entry-date">2019</span></div>
         <div class="entry-sub">MSc thesis, Óbuda University</div>
@@ -899,6 +801,100 @@
 }</pre>
         </li>
       </ol>
+    </section>
+
+    <!-- ========== CV ========== -->
+    <section id="cv">
+      <h2>Curriculum Vitae</h2>
+      <p class="pub-links" style="margin:0 0 6px"><a class="pub-btn" href="cv.pdf" target="_blank" rel="noopener"><i class="fa-solid fa-file-arrow-down"></i> Download full CV (PDF)</a></p>
+
+      <h3>Education</h3>
+      <div class="entry">
+        <div class="entry-head"><span class="entry-title">PhD in Electrical Engineering and Informatics</span><span class="entry-date">2025 – Present</span></div>
+        <div class="entry-sub">Budapest University of Technology and Economics (BME), Budapest, Hungary</div>
+        <ul>
+          <li>Research topic: Neural speech decoding using deep learning approaches</li>
+        </ul>
+      </div>
+      <div class="entry">
+        <div class="entry-head"><span class="entry-title">MSc in Mechatronics Engineering</span><span class="entry-date">2019</span></div>
+        <div class="entry-sub">Óbuda University, Bánki Donát Faculty of Mechanical and Safety Engineering, Budapest, Hungary</div>
+        <ul>
+          <li>Thesis: Effect of electromigration on the mechanical behaviour of solder interconnects</li>
+        </ul>
+      </div>
+      <div class="entry">
+        <div class="entry-head"><span class="entry-title">BE in Electronics Engineering</span><span class="entry-date">2016</span></div>
+        <div class="entry-sub">Mehran University of Engineering and Technology, Jamshoro, Pakistan</div>
+        <ul>
+          <li>Thesis: FPGA-based condition monitoring system for industrial motors</li>
+        </ul>
+      </div>
+
+      <h3>Academic Experience</h3>
+      <div class="entry">
+        <div class="entry-head"><span class="entry-title">Teaching Assistant</span><span class="entry-date">2025 – Present</span></div>
+        <div class="entry-sub">Budapest University of Technology and Economics (BME), Budapest, Hungary</div>
+      </div>
+      <div class="entry">
+        <div class="entry-head"><span class="entry-title">Lecturer, Department of Computer Systems Engineering</span><span class="entry-date">2022 – 2025</span></div>
+        <div class="entry-sub">Balochistan University of Engineering and Technology (BUET), Khuzdar, Pakistan</div>
+        <ul>
+          <li>Taught undergraduate courses in computer systems engineering</li>
+          <li>Supervised final-year engineering projects from proposal to completion</li>
+          <li>Coordinated departmental activities</li>
+        </ul>
+      </div>
+
+      <h3>Honours and Awards</h3>
+      <ul class="plain">
+        <li><strong>Stipendium Hungaricum Scholarship</strong>, Government of Hungary — PhD studies (2025)</li>
+        <li><strong>Stipendium Hungaricum Scholarship</strong>, Government of Hungary — MSc studies (2016)</li>
+      </ul>
+
+      <h3>Conferences and Events</h3>
+      <ul class="plain">
+        <li>SPECOM 2026 — International Conference on Speech and Computer</li>
+        <li>International Workshop on Embedded Systems and Their Applications</li>
+        <li>Micro Mechatronics Conference, Hungary</li>
+      </ul>
+
+      <h3>Skills</h3>
+      <div class="skill-group">
+        <h4>Programming and tools</h4>
+        <ul class="skills">
+          <li><span class="logo"><img src="assets/logos/python.svg" alt=""></span><span>Python<small>Data analysis, ML, deep learning</small></span></li>
+          <li><span class="logo"><img src="assets/logos/matlab.svg" alt=""></span><span>MATLAB<small>Signal processing, modelling</small></span></li>
+          <li><span class="logo"><i class="fa-solid fa-sitemap"></i></span><span>Simulink<small>Simulation and control</small></span></li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h4>Machine learning</h4>
+        <ul class="skills">
+          <li><span class="logo"><i class="fa-solid fa-brain"></i></span><span>Deep learning</span></li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h4>Signals</h4>
+        <ul class="skills">
+          <li><span class="logo"><i class="fa-solid fa-wave-square"></i></span><span>Neural signal processing<small>iEEG and EEG</small></span></li>
+          <li><span class="logo"><i class="fa-solid fa-heart-pulse"></i></span><span>Biomedical signal processing</span></li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h4>Engineering</h4>
+        <ul class="skills">
+          <li><span class="logo"><i class="fa-solid fa-microchip"></i></span><span>FPGA design</span></li>
+          <li><span class="logo"><i class="fa-solid fa-memory"></i></span><span>Embedded systems</span></li>
+          <li><span class="logo"><i class="fa-solid fa-plug"></i></span><span>Hardware–software integration</span></li>
+          <li><span class="logo"><i class="fa-solid fa-gears"></i></span><span>Automation and control</span></li>
+        </ul>
+      </div>
+
+      <h3>Certification</h3>
+      <ul class="stickers">
+        <li class="sticker"><span class="seal"><img src="assets/logos/coursera.svg" alt=""></span><span>Supervised Machine Learning: Regression and Classification<small>DeepLearning.AI &amp; Stanford University, Coursera · 2025</small></span></li>
+      </ul>
     </section>
 
     <!-- ========== GALLERY ========== -->
@@ -1041,6 +1037,7 @@
 
   function showPage(id) {
     var sections = document.querySelectorAll('main section');
+    if (id === 'supervising') id = 'teaching';
     var target = document.getElementById(id) ? id : 'home';
     sections.forEach(function (s) { s.classList.toggle('active', s.id === target); });
     document.querySelectorAll('nav a').forEach(function (a) {
@@ -1053,8 +1050,8 @@
   var BAND_SUB = {
     home: 'PhD researcher in neural speech decoding at the Budapest University of Technology and Economics',
     research: 'Decoding speech from brain signals',
-    teaching: 'Courses at BME and BUET',
-    supervising: 'Students and projects',
+    teaching: 'Courses and student supervision at BME and BUET',
+    cv: 'Education, experience and skills',
     projects: 'Research and engineering work',
     publications: 'Conference papers and journal articles',
     gallery: 'Conferences, colleagues and memories',
