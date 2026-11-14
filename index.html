@@ -5,6 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Saifullah Memon | PhD Researcher, Neural Speech Decoding</title>
 <meta name="description" content="Saifullah Memon, PhD researcher at the Budapest University of Technology and Economics (BME), working on neural speech decoding from iEEG and EEG with deep learning.">
+<link rel="canonical" href="https://memonsaif.github.io/">
+<meta property="og:type" content="profile">
+<meta property="og:site_name" content="Saifullah Memon">
+<meta property="og:title" content="Saifullah Memon | PhD Researcher, Neural Speech Decoding">
+<meta property="og:description" content="PhD researcher at the Budapest University of Technology and Economics (BME), decoding speech from brain signals with deep learning.">
+<meta property="og:url" content="https://memonsaif.github.io/">
+<meta property="og:image" content="https://memonsaif.github.io/assets/social-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Saifullah Memon, PhD Researcher in Neural Speech Decoding at BME">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Saifullah Memon | PhD Researcher, Neural Speech Decoding">
+<meta name="twitter:description" content="PhD researcher at BME, decoding speech from brain signals with deep learning.">
+<meta name="twitter:image" content="https://memonsaif.github.io/assets/social-card.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -189,7 +203,11 @@
     padding: 1px 9px;
     cursor: pointer;
   }
-  .pub-links button:hover { background: var(--accent-soft); }
+  .pub-links button:hover, .pub-btn:hover { background: var(--accent-soft); text-decoration: none; }
+  .pub-btn {
+    display: inline-block; border: 1px solid var(--accent); color: var(--accent);
+    border-radius: 6px; padding: 1px 9px; margin-right: 4px;
+  }
   pre.bib {
     display: none;
     background: #f6f8fa;
@@ -283,6 +301,44 @@
 
   a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
 
+  /* ---------- Research ---------- */
+  .lead { font-size: 1.12rem; line-height: 1.6; max-width: 64ch; }
+  .pipeline { list-style: none; counter-reset: step; padding: 0; margin: 26px 0 8px;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+  .pipeline > li { counter-increment: step; position: relative; padding: 0 18px 0 0; }
+  .pipeline .node {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 12px;
+  }
+  .pipeline .node::before {
+    content: counter(step); flex: 0 0 30px; height: 30px; border-radius: 50%;
+    background: var(--accent); color: #fff; font-weight: 600; font-size: 0.9rem;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .pipeline .node::after { content: ""; flex: 1; height: 2px; background: var(--accent-soft); }
+  .pipeline > li:last-child .node::after { display: none; }
+  .pipeline svg { width: 100%; height: 46px; display: block; margin-bottom: 10px; }
+  .pipeline h4 { margin: 0 0 4px; font-size: 1rem; font-weight: 600; }
+  .pipeline p { margin: 0; font-size: 0.9rem; color: var(--muted); line-height: 1.5; }
+  .branch {
+    margin: 22px 0 0; padding: 14px 18px; border-left: 3px solid var(--accent);
+    background: var(--accent-soft); border-radius: 0 10px 10px 0; font-size: 0.95rem;
+  }
+  .findings { padding-left: 20px; margin: 0; }
+  .findings li { margin: 6px 0; }
+  .directions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .direction { border: 1px solid var(--line); border-radius: 12px; padding: 18px; }
+  .direction i { color: var(--accent); font-size: 1.3rem; }
+  .direction h4 { margin: 10px 0 6px; font-size: 1rem; }
+  .direction p { margin: 0 0 10px; font-size: 0.9rem; color: var(--muted); line-height: 1.5; }
+  .direction .status { font-size: 0.8rem; margin-left: 0; }
+  @media (max-width: 860px) {
+    .pipeline { grid-template-columns: 1fr; gap: 18px; }
+    .pipeline > li { padding: 0; }
+    .pipeline .node::after { display: none; }
+    .pipeline svg { max-width: 170px; }
+    .directions { grid-template-columns: 1fr; }
+  }
+
   /* ---------- Gallery ---------- */
   .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 22px; }
   .filters button {
@@ -340,7 +396,7 @@
   <aside class="sidebar">
     <!-- PHOTO: add a square headshot named photo.jpg to the repository, then replace the div below with:
          <img class="photo" src="photo.jpg" alt="Saifullah Memon"> -->
-    <div class="photo-placeholder" aria-label="Saifullah Memon">SM</div>
+    <img class="photo" src="photo.jpg" alt="Saifullah Memon" width="180" height="180">
 
     <h1 class="name">Saifullah Memon</h1>
     <p class="tagline">PhD Researcher | Neural Speech Decoding | Machine Learning</p>
@@ -362,6 +418,7 @@
     <nav>
       <ul>
         <li><a href="#home" data-page="home">Home</a></li>
+        <li><a href="#research" data-page="research">Research</a></li>
         <li><a href="#teaching" data-page="teaching">Teaching</a></li>
         <li><a href="#supervising" data-page="supervising">Supervising</a></li>
         <li><a href="#projects" data-page="projects">Projects</a></li>
@@ -511,6 +568,72 @@
       </ul>
     </section>
 
+    <!-- ========== RESEARCH ========== -->
+    <section id="research">
+      <h2>Research</h2>
+      <p class="lead">I work on brain–computer interfaces that decode speech directly from brain activity. The long-term goal is to give people who have lost the ability to speak a way to communicate again.</p>
+
+      <h3>From brain signals to speech</h3>
+      <p>In my SPECOM 2026 paper, a decoder learns to reconstruct speech features from intracranial EEG (iEEG) recorded while people speak words aloud.</p>
+      <ol class="pipeline">
+        <li>
+          <div class="node"></div>
+          <svg viewBox="0 0 142 46" preserveAspectRatio="none" aria-hidden="true"><path d="M0,23 L8,18 L14,28 L22,12 L30,30 L38,16 L46,26 L54,9 L62,32 L70,19 L78,25 L86,14 L94,29 L102,20 L110,24 L118,15 L126,27 L134,21 L142,23" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          <h4>Brain activity</h4>
+          <p>iEEG is recorded from electrodes while a person speaks words.</p>
+        </li>
+        <li>
+          <div class="node"></div>
+          <svg viewBox="0 0 142 46" aria-hidden="true"><g fill="var(--accent)"><rect x="6" y="14" width="34" height="18" rx="4" opacity=".25"/><rect x="54" y="14" width="34" height="18" rx="4"/><rect x="102" y="14" width="34" height="18" rx="4"/></g></svg>
+          <h4>Word events</h4>
+          <p>Only the moments when words are produced are kept. Pauses are removed.</p>
+        </li>
+        <li>
+          <div class="node"></div>
+          <svg viewBox="0 0 142 46" aria-hidden="true"><g fill="none" stroke="var(--accent)" stroke-width="1.4"><circle cx="20" cy="12" r="5"/><circle cx="20" cy="34" r="5"/><circle cx="71" cy="8" r="5"/><circle cx="71" cy="23" r="5"/><circle cx="71" cy="38" r="5"/><circle cx="122" cy="23" r="5"/><path d="M25 12 66 8M25 12 66 23M25 12 66 38M25 34 66 8M25 34 66 23M25 34 66 38M76 8 117 23M76 23 117 23M76 38 117 23" opacity=".5"/></g></svg>
+          <h4>Lightweight decoder</h4>
+          <p>A small deep learning model reads a 200 ms window of brain activity, ending 200 ms before each moment of speech.</p>
+        </li>
+        <li>
+          <div class="node"></div>
+          <svg viewBox="0 0 142 46" aria-hidden="true"><g fill="var(--accent)"><rect x="4" y="18.0" width="7" height="10" rx="2"/><rect x="15" y="12.0" width="7" height="22" rx="2"/><rect x="26" y="6.0" width="7" height="34" rx="2"/><rect x="37" y="9.0" width="7" height="28" rx="2"/><rect x="48" y="3.0" width="7" height="40" rx="2"/><rect x="59" y="14.0" width="7" height="18" rx="2"/><rect x="70" y="8.0" width="7" height="30" rx="2"/><rect x="81" y="4.0" width="7" height="38" rx="2"/><rect x="92" y="16.0" width="7" height="14" rx="2"/><rect x="103" y="11.0" width="7" height="24" rx="2"/><rect x="114" y="19.0" width="7" height="8" rx="2"/><rect x="125" y="15.0" width="7" height="16" rx="2"/></g></svg>
+          <h4>Speech features</h4>
+          <p>The model predicts a log-mel spectrogram, a compact picture of what the speech sounds like.</p>
+        </li>
+      </ol>
+      <div class="branch"><strong>Reliability check.</strong> The reconstruction error, added up over each word, works as a confidence score. It helps flag brain activity from people the model has never seen.</div>
+
+      <h3>Key findings</h3>
+      <ul class="findings">
+        <li>The decoder was trained on eight people and tested on two completely new people.</li>
+        <li>A 200 ms window of brain activity ending 200 ms before the speech gave the best balance of accuracy and reliability.</li>
+        <li>Scoring errors over whole words, rather than single moments, detects unfamiliar brain patterns better.</li>
+      </ul>
+      <p class="pub-links" style="margin-top:14px"><a class="pub-btn" href="https://link.springer.com/book/10.1007/978-3-032-37870-5" target="_blank" rel="noopener">Read the paper on Springer</a></p>
+
+      <h3>Research directions</h3>
+      <div class="directions">
+        <div class="direction">
+          <i class="fa-solid fa-feather"></i>
+          <h4>Lightweight decoders</h4>
+          <p>Small, efficient models that decode speech from iEEG and know when not to trust their output.</p>
+          <span class="badge pub status">Published, SPECOM 2026</span>
+        </div>
+        <div class="direction">
+          <i class="fa-solid fa-tags"></i>
+          <h4>Learning from less labelled data</h4>
+          <p>Masked self-supervised learning, so decoders need fewer labelled recordings to train.</p>
+          <span class="badge review status">Under review</span>
+        </div>
+        <div class="direction">
+          <i class="fa-solid fa-scale-balanced"></i>
+          <h4>Reliable evaluation</h4>
+          <p>How imagined speech decoding from scalp EEG is tested, and whether results hold across people.</p>
+          <span class="badge review status">Two reviews under review</span>
+        </div>
+      </div>
+    </section>
+
     <!-- ========== TEACHING ========== -->
     <section id="teaching">
       <h2>Teaching</h2>
@@ -590,7 +713,7 @@
           In <em>Speech and Computer (SPECOM 2026)</em>, Lecture Notes in Computer Science (LNAI, vol. 16935), pp. 183–197. Springer.
           <span class="badge pub">Published</span>
           <div class="pub-links">
-            <!-- Add DOI: <a href="https://doi.org/XXXX" target="_blank" rel="noopener">DOI</a> · -->
+            <a class="pub-btn" href="https://link.springer.com/book/10.1007/978-3-032-37870-5" target="_blank" rel="noopener">Springer</a>
             <button onclick="toggleBib('bib1')">BibTeX</button>
           </div>
 <pre class="bib" id="bib1">@inproceedings{memon2026lstm,
@@ -775,5 +898,6 @@
   document.getElementById('year').textContent = new Date().getFullYear();
   route();
 </script>
+<script data-goatcounter="https://memonsaif.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
