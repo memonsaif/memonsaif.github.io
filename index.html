@@ -457,7 +457,7 @@
   }
   main section > h2 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
   main section > :nth-child(2) { margin-top: 0; }
-  footer { margin: 28px 40px 0; max-width: 1020px; border-top: none; padding-top: 0; }
+  main { padding-bottom: 56px; }
 
   h3 {
     font-family: var(--serif); font-weight: 600; font-size: 1.32rem; color: var(--navy);
@@ -478,8 +478,33 @@
   .sticker .seal { background: var(--navy-2); }
   .lead { color: var(--navy); font-size: 1.15rem; }
 
+  /* Footer */
+  .layout { background: linear-gradient(to right, var(--navy) 300px, transparent 300px); }
+  .site-footer { margin-top: 0; padding-top: 0; border-top: none; background: var(--navy); color: #c4d0e4; font-size: 0.9rem; position: relative; z-index: 1; }
+  .footer-inner {
+    display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px;
+    max-width: 1320px; padding: 44px 56px 30px; margin: 0 auto;
+  }
+  .site-footer h2.f-name { font-family: var(--serif); color: #fff; font-size: 1.3rem; font-weight: 600; margin: 0 0 10px; }
+  .site-footer h3.f-head { font-family: inherit; color: #fff; font-size: 0.95rem; font-weight: 600; margin: 0 0 12px; }
+  .site-footer h3.f-head::after { display: none; }
+  .site-footer address { font-style: normal; line-height: 1.7; }
+  .site-footer p { margin: 0 0 10px; }
+  .site-footer a { color: #e3eaf5; }
+  .site-footer a:hover { color: #fff; }
+  .site-footer i { color: var(--gold); width: 18px; text-align: center; margin-right: 4px; }
+  .f-links { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; }
+  .footer-base {
+    border-top: 1px solid rgba(255, 255, 255, .12);
+    max-width: 1320px; margin: 0 auto; padding: 16px 56px 22px;
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+    font-size: 0.82rem; color: #9fb0cc;
+  }
+
   @media (max-width: 860px) {
-    .layout { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr; gap: 26px; padding: 34px 22px 20px; }
+    .footer-base { padding: 14px 22px 20px; }
+    .layout { grid-template-columns: 1fr; background: none; }
     .sidebar { position: static; height: auto; padding: 30px 18px 22px; }
     .photo { width: 128px; height: 128px; }
     nav ul { border: none; }
@@ -489,7 +514,6 @@
     .page-band { padding: 34px 20px 92px; }
     .page-band h1 { font-size: 1.9rem; }
     main section { margin: -66px 12px 0; padding: 26px 20px 30px; border-radius: 12px; }
-    footer { margin: 22px 16px 0; }
   }
 </style>
 </head>
@@ -912,9 +936,41 @@
       </ul>
     </section>
 
-    <footer>© <span id="year"></span> Saifullah Memon · Last updated November 2026</footer>
   </main>
 </div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="f-col">
+      <h2 class="f-name">Saifullah Memon</h2>
+      <address>
+        Department of Telecommunications and Artificial Intelligence (TMIT)<br>
+        Faculty of Electrical Engineering and Informatics<br>
+        Budapest University of Technology and Economics<br>
+        Budapest, Hungary
+      </address>
+    </div>
+    <div class="f-col">
+      <h3 class="f-head">Contact</h3>
+      <p><a href="mailto:saifullah.memon@tmit.bme.hu"><i class="fa-solid fa-envelope"></i> saifullah.memon@tmit.bme.hu</a></p>
+      <ul class="f-links">
+        <li><a href="https://scholar.google.com/citations?hl=en&amp;user=OomReesAAAAJ" target="_blank" rel="noopener"><i class="ai ai-google-scholar"></i> Google Scholar</a></li>
+        <li><a href="https://orcid.org/0009-0007-6513-3938" target="_blank" rel="noopener"><i class="ai ai-orcid"></i> ORCID</a></li>
+        <li><a href="https://www.researchgate.net/profile/Saifullah-Memon" target="_blank" rel="noopener"><i class="ai ai-researchgate"></i> ResearchGate</a></li>
+        <li><a href="https://www.linkedin.com/in/saifullah-memon-55446785" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i> LinkedIn</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h3 class="f-head">About this page</h3>
+      <p>Personal academic page. Views expressed are my own.</p>
+      <p>This site uses privacy-friendly visitor statistics without cookies.</p>
+    </div>
+  </div>
+  <div class="footer-base">
+    <span>© <span id="year"></span> Saifullah Memon</span>
+    <span>Last updated November 2026</span>
+  </div>
+</footer>
 
 <div class="lightbox" id="lightbox" aria-hidden="true">
   <button class="lb-close" aria-label="Close" onclick="closeLightbox()"><i class="fa-solid fa-xmark"></i></button>
