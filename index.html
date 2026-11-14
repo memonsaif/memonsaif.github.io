@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saifullah Memon | PhD Researcher, Neural Speech Decoding</title>
+<meta name="description" content="Saifullah Memon, PhD researcher at the Budapest University of Technology and Economics (BME), working on neural speech decoding from iEEG and EEG with deep learning.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+<style>
+  :root {
+    --accent: #1a66c9;
+    --accent-soft: #eaf2fc;
+    --text: #2b2f33;
+    --muted: #6b7178;
+    --line: #e6e8eb;
+    --bg: #ffffff;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-weight: 400;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.65;
+    font-size: 16px;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .layout {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 48px 28px;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 56px;
+  }
+
+  /* ---------- Sidebar ---------- */
+  .sidebar {
+    position: sticky;
+    top: 40px;
+    align-self: start;
+    text-align: center;
+  }
+  .photo {
+    width: 180px;
+    height: 180px;
+    border-radius: 18px;
+    margin: 0 auto 18px;
+    object-fit: cover;
+    display: block;
+  }
+  .photo-placeholder {
+    width: 180px;
+    height: 180px;
+    border-radius: 18px;
+    margin: 0 auto 18px;
+    background: linear-gradient(135deg, #1a66c9, #5b9be6);
+    color: #fff;
+    font-size: 56px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .name { font-size: 1.55rem; font-weight: 600; margin: 0 0 6px; }
+  .tagline { color: var(--muted); font-size: 0.92rem; font-weight: 300; margin: 0 0 6px; }
+  .affil { color: var(--muted); font-size: 0.85rem; margin: 0 0 22px; }
+
+  .icons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 26px;
+  }
+  .icons a, .icons span {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 10px 4px;
+    border-radius: 10px;
+    font-size: 0.68rem;
+    color: var(--muted);
+    transition: background .15s;
+  }
+  .icons a i, .icons span i { font-size: 1.35rem; color: var(--accent); }
+  .icons a:hover { background: var(--accent-soft); text-decoration: none; }
+  .icons span.pending { opacity: .35; cursor: default; }
+
+  nav ul { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--line); }
+  nav li { border-bottom: 1px solid var(--line); }
+  nav a {
+    display: block;
+    padding: 11px 6px;
+    color: var(--text);
+    font-weight: 500;
+    font-size: 0.95rem;
+  }
+  nav a:hover { color: var(--accent); text-decoration: none; }
+  nav a.active { color: var(--accent); }
+
+  /* ---------- Content ---------- */
+  main section { display: none; animation: fade .25s ease; }
+  main section.active { display: block; }
+  @keyframes fade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+  h2 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin: 0 0 18px;
+  }
+  h3 {
+    font-size: 1.12rem;
+    font-weight: 600;
+    margin: 38px 0 14px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--accent-soft);
+  }
+  p { margin: 0 0 14px; }
+
+  .news { list-style: none; padding: 0; margin: 0; }
+  .news li { display: flex; gap: 14px; padding: 8px 0; border-bottom: 1px solid var(--line); }
+  .news li:last-child { border-bottom: none; }
+  .news strong { font-weight: 600; }
+  .news .date {
+    flex: 0 0 52px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--accent);
+    padding-top: 2px;
+  }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; list-style: none; margin: 0; }
+  .tags li {
+    background: var(--accent-soft);
+    color: #174f99;
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 0.86rem;
+  }
+
+  .entry { margin-bottom: 20px; }
+  .entry-head { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .entry-title { font-weight: 600; }
+  .entry-date { color: var(--muted); font-size: 0.88rem; white-space: nowrap; }
+  .entry-sub { color: var(--muted); font-size: 0.92rem; }
+  .entry ul { margin: 6px 0 0; padding-left: 20px; }
+  .entry li { margin: 2px 0; }
+
+  .card {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 20px 22px;
+    margin-bottom: 18px;
+  }
+  .card .kw { margin-top: 10px; font-size: 0.85rem; color: var(--muted); }
+
+  .pubs { padding-left: 22px; margin: 0; }
+  .pubs li { margin-bottom: 16px; }
+  .pub-title { font-weight: 600; }
+  .badge {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 6px;
+    margin-left: 6px;
+    vertical-align: 1px;
+  }
+  .badge.pub { background: #e5f5ea; color: #1d7a3c; }
+  .badge.review { background: #fff4e0; color: #9a5b00; }
+  .pub-links { margin-top: 4px; font-size: 0.85rem; }
+  .pub-links button {
+    font: inherit;
+    background: none;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    border-radius: 6px;
+    padding: 1px 9px;
+    cursor: pointer;
+  }
+  .pub-links button:hover { background: var(--accent-soft); }
+  pre.bib {
+    display: none;
+    background: #f6f8fa;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 0.78rem;
+    overflow-x: auto;
+    margin-top: 8px;
+  }
+  pre.bib.open { display: block; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px; }
+  .plain { padding-left: 20px; margin: 0; }
+  .plain li { margin: 4px 0; }
+
+  .note {
+    color: var(--muted);
+    font-size: 0.92rem;
+    font-style: italic;
+  }
+
+  .contact-list { list-style: none; padding: 0; margin: 0; }
+  .contact-list li { display: flex; align-items: center; gap: 14px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+  .contact-list i { color: var(--accent); width: 22px; text-align: center; font-size: 1.1rem; }
+
+  footer {
+    margin-top: 60px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  /* ---------- Gallery ---------- */
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 22px; }
+  .filters button {
+    font: inherit; font-size: 0.88rem; cursor: pointer;
+    background: #fff; color: var(--text);
+    border: 1px solid var(--line); border-radius: 999px; padding: 5px 14px;
+  }
+  .filters button.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+  .g-item { margin: 0; cursor: pointer; border-radius: 12px; overflow: hidden; border: 1px solid var(--line); background: #fff; }
+  .g-item img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; transition: transform .3s; }
+  .g-item:hover img { transform: scale(1.04); }
+  .g-item figcaption { padding: 10px 12px; font-size: 0.86rem; }
+  .g-item .g-date { display: block; color: var(--muted); font-size: 0.78rem; margin-top: 2px; }
+  .g-empty {
+    border: 2px dashed var(--line); border-radius: 12px; padding: 40px 20px;
+    text-align: center; color: var(--muted);
+  }
+  .g-empty i { font-size: 2rem; color: var(--accent); opacity: .5; display: block; margin-bottom: 10px; }
+  .lightbox {
+    position: fixed; inset: 0; background: rgba(10, 12, 15, .9);
+    display: none; align-items: center; justify-content: center; flex-direction: column;
+    z-index: 100; padding: 24px;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 100%; max-height: 80vh; border-radius: 8px; }
+  .lightbox .lb-cap { color: #eee; margin-top: 14px; text-align: center; font-size: 0.95rem; max-width: 800px; }
+  .lightbox button {
+    position: absolute; background: rgba(255,255,255,.12); color: #fff; border: none;
+    width: 44px; height: 44px; border-radius: 50%; font-size: 1.2rem; cursor: pointer;
+  }
+  .lightbox button:hover { background: rgba(255,255,255,.25); }
+  .lb-close { top: 18px; right: 18px; }
+  .lb-prev { left: 18px; top: 50%; transform: translateY(-50%); }
+  .lb-next { right: 18px; top: 50%; transform: translateY(-50%); }
+
+  /* ---------- Mobile ---------- */
+  @media (max-width: 860px) {
+    .layout { grid-template-columns: 1fr; gap: 28px; padding: 28px 20px; }
+    .sidebar { position: static; }
+    .photo, .photo-placeholder { width: 140px; height: 140px; font-size: 44px; }
+    nav ul { display: flex; flex-wrap: wrap; justify-content: center; border: none; gap: 6px; }
+    nav li { border: none; }
+    nav a { padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); font-size: 0.88rem; }
+    nav a.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .two-col { grid-template-columns: 1fr; }
+    .news .date { flex-basis: 70px; }
+  }
+</style>
+</head>
+<body>
+<div class="layout">
+
+  <!-- ===================== SIDEBAR ===================== -->
+  <aside class="sidebar">
+    <!-- PHOTO: add a square headshot named photo.jpg to the repository, then replace the div below with:
+         <img class="photo" src="photo.jpg" alt="Saifullah Memon"> -->
+    <div class="photo-placeholder" aria-label="Saifullah Memon">SM</div>
+
+    <h1 class="name">Saifullah Memon</h1>
+    <p class="tagline">PhD Researcher | Neural Speech Decoding | Machine Learning</p>
+    <p class="affil">Budapest University of Technology and Economics (BME), Hungary</p>
+
+    <!-- ICON LINKS: links marked class="pending" are greyed out until you add the URL.
+         To activate one, change <span class="pending"> to <a href="YOUR-URL" target="_blank" rel="noopener"> and </span> to </a>. -->
+    <div class="icons">
+      <a href="cv.pdf" target="_blank" rel="noopener"><i class="fa-solid fa-file-lines"></i>CV</a>
+      <a href="https://www.researchgate.net/profile/Saifullah-Memon" target="_blank" rel="noopener"><i class="ai ai-researchgate"></i>ResearchGate</a>
+      <a href="https://scholar.google.com/citations?hl=en&amp;user=OomReesAAAAJ" target="_blank" rel="noopener"><i class="ai ai-google-scholar"></i>Scholar</a>
+      <a href="https://orcid.org/0009-0007-6513-3938" target="_blank" rel="noopener"><i class="ai ai-orcid"></i>ORCID</a>
+      <a href="https://github.com/memonsaif" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i>GitHub</a>
+      <span class="pending" title="Coming soon"><i class="ai ai-scopus"></i>Scopus</span>
+      <a href="https://www.linkedin.com/in/saifullah-memon-55446785" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i>LinkedIn</a>
+      <a href="mailto:saifullah.memon@tmit.bme.hu"><i class="fa-solid fa-envelope"></i>Email</a>
+    </div>
+
+    <nav>
+      <ul>
+        <li><a href="#home" data-page="home">Home</a></li>
+        <li><a href="#teaching" data-page="teaching">Teaching</a></li>
+        <li><a href="#supervising" data-page="supervising">Supervising</a></li>
+        <li><a href="#projects" data-page="projects">Projects</a></li>
+        <li><a href="#publications" data-page="publications">Publications</a></li>
+        <li><a href="#gallery" data-page="gallery">Gallery</a></li>
+        <li><a href="#contact" data-page="contact">Contact</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- ===================== CONTENT ===================== -->
+  <main>
+
+    <!-- ========== HOME ========== -->
+    <section id="home">
+      <h2>Biography</h2>
+      <p>Saifullah Memon is a PhD researcher in Electrical Engineering and Informatics at the Budapest University of Technology and Economics (BME), Hungary, where he holds a Stipendium Hungaricum scholarship. His research focuses on neural speech decoding: using deep learning to turn intracranial EEG (iEEG) and EEG signals into speech. His work explores deep learning models for speech decoding, self-supervised representation learning for label-efficient decoding, and the reliable evaluation of imagined speech decoding systems, with the long-term goal of building practical brain–computer interfaces that can restore communication.</p>
+      <p>Before his PhD, he earned an MSc in Mechatronics Engineering from Óbuda University, Budapest, and a BE in Electronics Engineering from Mehran University of Engineering and Technology, Pakistan. He then spent three years as a Lecturer in Computer Systems Engineering at Balochistan University of Engineering and Technology (BUET), Pakistan.</p>
+      <p>At BME, he supports teaching in Deep Learning, Infocommunication and Speech Information Systems, and supervises master's students in the project lab. His first paper was published at SPECOM 2026 (Springer LNCS), and three journal articles are under review.</p>
+
+      <h3>News</h3>
+      <ul class="news">
+        <li><span class="date">2026</span><span><strong>New review submitted to MDPI <em>AI</em></strong><br>A review of deep learning architectures, datasets and open challenges in decoding imagined speech from scalp EEG.</span></li>
+        <li><span class="date">2026</span><span><strong>First paper published at SPECOM 2026</strong><br><em>A Lightweight LSTM-Based iEEG-to-Speech Decoder with Event-Level Unseen Neural Pattern Detection</em>, Springer LNCS.</span></li>
+        <li><span class="date">2026</span><span><strong>Journal article submitted to <em>Expert Systems with Applications</em></strong><br>Masked self-supervised representation learning for label-efficient speech decoding from intracranial EEG.</span></li>
+        <li><span class="date">2026</span><span><strong>Systematic review submitted to <em>Neuroscience Informatics</em></strong><br>Evaluation validity, cross-subject generalisation and translational readiness in EEG-based imagined speech decoding.</span></li>
+        <li><span class="date">2025</span><span><strong>PhD started at BME</strong><br>Began doctoral studies in Electrical Engineering and Informatics with a Stipendium Hungaricum scholarship.</span></li>
+      </ul>
+
+      <h3>Research Interests</h3>
+      <ul class="tags">
+        <li>Neural speech decoding (iEEG / EEG)</li>
+        <li>Brain–computer interfaces</li>
+        <li>Deep learning models</li>
+        <li>Self-supervised &amp; label-efficient learning</li>
+        <li>Biomedical &amp; neural signal processing</li>
+        <li>Evaluation validity &amp; cross-subject generalisation</li>
+      </ul>
+
+      <h3>Education</h3>
+      <div class="entry">
+        <div class="entry-head"><span class="entry-title">PhD in Electrical Engineering and Informatics</span><span class="entry-date">2025 – Present</span></div>
+        <div class="entry-sub">Budapest University of Technology and Economics (BME), Budapest, Hungary</div>
+        <ul>
+          <li>Research topic: Neural speech decoding using deep learning approaches</li>
+          <li>Supervisor: Dr. Mohammed Salah Al-Radhi</li>
+          <li>Stipendium Hungaricum Scholarship</li>
+        </ul>
+      </div>
+      <div class="entry">
+        <div class="entry-head"><span class="entry-title">MSc in Mechatronics Engineering</span><span class="entry-date">2019</span></div>
+        <div class="entry-sub">Óbuda University, Bánki Donát Faculty of Mechanical and Safety Engineering, Budapest, Hungary</div>
+        <ul>
+          <li>Thesis: Effect of electromigration on the mechanical behaviour of solder interconnects</li>
+          <li>Final grade: CGPA 4.71 / 5</li>
+          <li>Stipendium Hungaricum Scholarship</li>
+        </ul>
+      </div>
+      <div class="entry">
+        <div class="entry-head"><span class="entry-title">BE in Electronics Engineering</span><span class="entry-date">2016</span></div>
+        <div class="entry-sub">Mehran University of Engineering and Technology, Jamshoro, Pakistan</div>
+        <ul>
+          <li>Thesis: FPGA-based condition monitoring system for industrial motors</li>
+          <li>Final grade: CGPA 3.81 / 4</li>
+        </ul>
+      </div>
+
+      <h3>Academic Experience</h3>
+      <div class="entry">
+        <div class="entry-head"><span class="entry-title">Teaching Assistant</span><span class="entry-date">2025 – Present</span></div>
+        <div class="entry-sub">Budapest University of Technology and Economics (BME), Budapest, Hungary</div>
+      </div>
+      <div class="entry">
+        <div class="entry-head"><span class="entry-title">Lecturer, Department of Computer Systems Engineering</span><span class="entry-date">2022 – 2025</span></div>
+        <div class="entry-sub">Balochistan University of Engineering and Technology (BUET), Khuzdar, Pakistan</div>
+        <ul>
+          <li>Taught undergraduate courses in computer systems engineering</li>
+          <li>Supervised final-year engineering projects from proposal to completion</li>
+          <li>Coordinated departmental activities and led the Prime Minister's Laptop Scheme for students</li>
+        </ul>
+      </div>
+
+      <h3>Honours and Awards</h3>
+      <ul class="plain">
+        <li><strong>Stipendium Hungaricum Scholarship</strong>, Government of Hungary — PhD studies (2025)</li>
+        <li><strong>Stipendium Hungaricum Scholarship</strong>, Government of Hungary — MSc studies (2016)</li>
+      </ul>
+
+      <h3>Conferences and Events</h3>
+      <ul class="plain">
+        <li>SPECOM 2026 — International Conference on Speech and Computer</li>
+        <li>International Workshop on Embedded Systems and Their Applications</li>
+        <li>Micro Mechatronics Conference, Hungary</li>
+        <li>Metal Cup Concept — Industry 4.0 event, Russia</li>
+        <li>LED Hackathon, organised by Tangram and Óbuda University, Hungary</li>
+      </ul>
+
+      <div class="two-col">
+        <div>
+          <h3>Skills</h3>
+          <ul class="plain">
+            <li><strong>Programming:</strong> Python (data analysis, ML, deep learning), MATLAB / Simulink</li>
+            <li><strong>Research:</strong> Deep learning, LSTM networks, self-supervised learning, neural &amp; biomedical signal processing</li>
+            <li><strong>Engineering:</strong> Embedded systems, FPGA design, hardware–software integration, automation &amp; control</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Certifications</h3>
+          <ul class="plain">
+            <li>Supervised Machine Learning: Regression and Classification — DeepLearning.AI &amp; Stanford University (Coursera), 2025</li>
+            <li>NEBOSH International General Certificate (IGC) in Occupational Health and Safety — NEBOSH, UK</li>
+          </ul>
+          <h3>Languages</h3>
+          <ul class="plain">
+            <li>Urdu, Sindhi, Hindi — native</li>
+            <li>English — proficient (C1–C2)</li>
+            <li>Hungarian — basic (A1)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== TEACHING ========== -->
+    <section id="teaching">
+      <h2>Teaching</h2>
+
+      <h3>Budapest University of Technology and Economics (BME)</h3>
+      <p class="entry-sub" style="margin-top:-6px">2025 – Present</p>
+      <div class="card">
+        <div class="entry-head"><span class="entry-title">Deep Learning</span><span class="entry-date">Teaching Assistant</span></div>
+      </div>
+      <div class="card">
+        <div class="entry-head"><span class="entry-title">Infocommunication</span><span class="entry-date">Teaching Assistant</span></div>
+      </div>
+      <div class="card">
+        <div class="entry-head"><span class="entry-title">Speech Information Systems</span><span class="entry-date">Lab Instructor</span></div>
+      </div>
+
+      <h3>Balochistan University of Engineering and Technology (BUET)</h3>
+      <p class="entry-sub" style="margin-top:-6px">2022 – 2025</p>
+      <div class="card">
+        <div class="entry-head"><span class="entry-title">Undergraduate courses in Computer Systems Engineering</span><span class="entry-date">Lecturer</span></div>
+        <!-- Add course names here, e.g. <ul><li>Digital Logic Design</li></ul> -->
+      </div>
+    </section>
+
+    <!-- ========== SUPERVISING ========== -->
+    <section id="supervising">
+      <h2>Supervising</h2>
+
+      <h3>BME — Master's students (project lab)</h3>
+      <p class="entry-sub" style="margin-top:-6px">2025 – Present</p>
+      <p>Supervision of master's students working on project-lab topics in speech and neural signal processing.</p>
+      <!-- Add students here (with their permission), e.g.
+      <div class="card"><div class="entry-head"><span class="entry-title">Student Name</span><span class="entry-date">2026</span></div>
+      <div class="entry-sub">Project title</div></div> -->
+
+      <h3>BUET — Final-year undergraduate projects</h3>
+      <p class="entry-sub" style="margin-top:-6px">2022 – 2025</p>
+      <p>Supervised final-year engineering projects in computer systems engineering, from proposal to completion.</p>
+      <!-- Add project titles here -->
+    </section>
+
+    <!-- ========== PROJECTS ========== -->
+    <section id="projects">
+      <h2>Projects</h2>
+
+      <div class="card">
+        <div class="entry-head"><span class="entry-title">Neural Speech Decoding from Intracranial EEG</span><span class="entry-date">2025 – Present</span></div>
+        <div class="entry-sub">PhD research, BME</div>
+        <p style="margin:10px 0 0">Deep learning models that decode speech from iEEG signals, including a lightweight LSTM-based iEEG-to-speech decoder with event-level detection of unseen neural patterns, and masked self-supervised representation learning for label-efficient decoding.</p>
+        <ul class="tags kw"><li>iEEG</li><li>EEG</li><li>LSTM</li><li>Self-supervised learning</li><li>Python</li><li>BCI</li></ul>
+      </div>
+
+      <div class="card">
+        <div class="entry-head"><span class="entry-title">Electromigration in Solder Interconnects</span><span class="entry-date">2019</span></div>
+        <div class="entry-sub">MSc thesis, Óbuda University</div>
+        <p style="margin:10px 0 0">A study of how electromigration affects the mechanical behaviour of solder interconnects in electronic assemblies.</p>
+        <ul class="tags kw"><li>Mechatronics</li><li>Electronics reliability</li></ul>
+      </div>
+
+      <div class="card">
+        <div class="entry-head"><span class="entry-title">FPGA-Based Condition Monitoring System for Industrial Motors</span><span class="entry-date">2016</span></div>
+        <div class="entry-sub">BE thesis, Mehran University of Engineering and Technology</div>
+        <p style="margin:10px 0 0">An FPGA-based system to monitor the operating condition of industrial motors and detect faults early.</p>
+        <ul class="tags kw"><li>FPGA</li><li>Embedded systems</li><li>Condition monitoring</li><li>Hardware–software integration</li></ul>
+      </div>
+    </section>
+
+    <!-- ========== PUBLICATIONS ========== -->
+    <section id="publications">
+      <h2>Publications</h2>
+
+      <h3>Conference Papers</h3>
+      <ol class="pubs">
+        <li>
+          <strong>Memon, S.</strong>, &amp; Al-Radhi, M. S. (2026).
+          <span class="pub-title">A Lightweight LSTM-Based iEEG-to-Speech Decoder with Event-Level Unseen Neural Pattern Detection.</span>
+          In <em>Speech and Computer (SPECOM 2026)</em>, Lecture Notes in Computer Science (LNAI, vol. 16935), pp. 183–197. Springer.
+          <span class="badge pub">Published</span>
+          <div class="pub-links">
+            <!-- Add DOI: <a href="https://doi.org/XXXX" target="_blank" rel="noopener">DOI</a> · -->
+            <button onclick="toggleBib('bib1')">BibTeX</button>
+          </div>
+<pre class="bib" id="bib1">@inproceedings{memon2026lstm,
+  author    = {Memon, Saifullah and Al-Radhi, Mohammed Salah},
+  title     = {A Lightweight LSTM-Based iEEG-to-Speech Decoder with Event-Level Unseen Neural Pattern Detection},
+  booktitle = {Speech and Computer (SPECOM 2026)},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {16935},
+  pages     = {183--197},
+  publisher = {Springer},
+  year      = {2026}
+}</pre>
+        </li>
+      </ol>
+
+      <h3>Journal Articles</h3>
+      <ol class="pubs" start="2">
+        <li>
+          <strong>Memon, S.</strong>, &amp; Al-Radhi, M. S.
+          <span class="pub-title">Neural Decoding of Imagined Speech from Scalp EEG: A Review of Deep Learning Architectures, Datasets, and Open Challenges.</span>
+          <em>AI</em>, MDPI.
+          <span class="badge review">Under review</span>
+          <div class="pub-links"><button onclick="toggleBib('bib4')">BibTeX</button></div>
+<pre class="bib" id="bib4">@article{memon2026eegreview,
+  author  = {Memon, Saifullah and Al-Radhi, Mohammed Salah},
+  title   = {Neural Decoding of Imagined Speech from Scalp EEG: A Review of Deep Learning Architectures, Datasets, and Open Challenges},
+  journal = {AI},
+  publisher = {MDPI},
+  year    = {2026},
+  note    = {Submitted}
+}</pre>
+        </li>
+        <li>
+          <strong>Memon, S.</strong>, &amp; Al-Radhi, M. S.
+          <span class="pub-title">Masked Self-Supervised Representation Learning for Label-Efficient Speech Decoding from Intracranial EEG.</span>
+          <em>Expert Systems with Applications</em>, Elsevier.
+          <span class="badge review">Under review</span>
+          <div class="pub-links"><button onclick="toggleBib('bib2')">BibTeX</button></div>
+<pre class="bib" id="bib2">@article{memon2026masked,
+  author  = {Memon, Saifullah and Al-Radhi, Mohammed Salah},
+  title   = {Masked Self-Supervised Representation Learning for Label-Efficient Speech Decoding from Intracranial EEG},
+  journal = {Expert Systems with Applications},
+  year    = {2026},
+  note    = {Submitted}
+}</pre>
+        </li>
+        <li>
+          Al-Radhi, M. S., &amp; <strong>Memon, S.</strong>
+          <span class="pub-title">EEG-Based Imagined Speech Decoding Beyond Accuracy: A Systematic Review of Evaluation Validity, Cross-Subject Generalization, and Translational Readiness.</span>
+          <em>Neuroscience Informatics</em>.
+          <span class="badge review">Under review</span>
+          <div class="pub-links"><button onclick="toggleBib('bib3')">BibTeX</button></div>
+<pre class="bib" id="bib3">@article{alradhi2026eegreview,
+  author  = {Al-Radhi, Mohammed Salah and Memon, Saifullah},
+  title   = {EEG-Based Imagined Speech Decoding Beyond Accuracy: A Systematic Review of Evaluation Validity, Cross-Subject Generalization, and Translational Readiness},
+  journal = {Neuroscience Informatics},
+  year    = {2026},
+  note    = {Submitted}
+}</pre>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ========== GALLERY ========== -->
+    <section id="gallery">
+      <h2>Gallery</h2>
+      <p>Moments from conferences, teaching, research and life along the way.</p>
+      <div class="filters" id="galleryFilters">
+        <button class="active" data-filter="all">All</button>
+        <button data-filter="academic">Academic</button>
+        <button data-filter="memories">Memories</button>
+      </div>
+      <div class="gallery" id="galleryGrid"></div>
+    </section>
+
+    <!-- ========== CONTACT ========== -->
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>I am happy to hear from researchers, students and collaborators interested in neural speech decoding and brain–computer interfaces.</p>
+      <ul class="contact-list">
+        <li><i class="fa-solid fa-envelope"></i><a href="mailto:saifullah.memon@tmit.bme.hu">saifullah.memon@tmit.bme.hu</a></li>
+        <li><i class="fa-brands fa-linkedin"></i><a href="https://www.linkedin.com/in/saifullah-memon-55446785" target="_blank" rel="noopener">linkedin.com/in/saifullah-memon-55446785</a></li>
+        <li><i class="ai ai-google-scholar"></i><a href="https://scholar.google.com/citations?hl=en&amp;user=OomReesAAAAJ" target="_blank" rel="noopener">Google Scholar</a></li>
+        <li><i class="ai ai-orcid"></i><a href="https://orcid.org/0009-0007-6513-3938" target="_blank" rel="noopener">orcid.org/0009-0007-6513-3938</a></li>
+        <li><i class="ai ai-researchgate"></i><a href="https://www.researchgate.net/profile/Saifullah-Memon" target="_blank" rel="noopener">ResearchGate</a></li>
+        <li><i class="fa-brands fa-github"></i><a href="https://github.com/memonsaif" target="_blank" rel="noopener">github.com/memonsaif</a></li>
+        <li><i class="fa-solid fa-building-columns"></i><span>Department of Telecommunications and Artificial Intelligence,<br>Budapest University of Technology and Economics (BME)</span></li>
+        <li><i class="fa-solid fa-location-dot"></i><span>Budapest, Hungary</span></li>
+      </ul>
+    </section>
+
+    <footer>© <span id="year"></span> Saifullah Memon · Last updated November 2026</footer>
+  </main>
+</div>
+
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lb-close" aria-label="Close" onclick="closeLightbox()"><i class="fa-solid fa-xmark"></i></button>
+  <button class="lb-prev" aria-label="Previous" onclick="stepLightbox(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+  <img id="lbImg" alt="">
+  <div class="lb-cap" id="lbCap"></div>
+  <button class="lb-next" aria-label="Next" onclick="stepLightbox(1)"><i class="fa-solid fa-chevron-right"></i></button>
+</div>
+
+<script>
+  /* ================= GALLERY PHOTOS =================
+     To add a photo: upload it into the "gallery" folder of the repository,
+     then add one line below. category is "academic" or "memories".
+     Example:
+     { src: "gallery/specom-2026.jpg", caption: "Presenting at SPECOM 2026", date: "Sep 2026", category: "academic" },
+  */
+  var PHOTOS = [
+  ];
+
+  var galleryFilter = 'all', lbList = [], lbIndex = 0;
+  function renderGallery() {
+    var grid = document.getElementById('galleryGrid');
+    lbList = PHOTOS.filter(function (p) { return galleryFilter === 'all' || p.category === galleryFilter; });
+    if (!lbList.length) {
+      grid.innerHTML = '<div class="g-empty" style="grid-column:1/-1"><i class="fa-regular fa-images"></i>Photos coming soon.</div>';
+      return;
+    }
+    grid.innerHTML = lbList.map(function (p, i) {
+      return '<figure class="g-item" onclick="openLightbox(' + i + ')">' +
+        '<img src="' + p.src + '" alt="' + (p.caption || '') + '" loading="lazy">' +
+        '<figcaption>' + (p.caption || '') + (p.date ? '<span class="g-date">' + p.date + '</span>' : '') + '</figcaption></figure>';
+    }).join('');
+  }
+  function openLightbox(i) { lbIndex = i; showLb(); document.getElementById('lightbox').classList.add('open'); }
+  function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); }
+  function stepLightbox(d) { lbIndex = (lbIndex + d + lbList.length) % lbList.length; showLb(); }
+  function showLb() {
+    var p = lbList[lbIndex];
+    document.getElementById('lbImg').src = p.src;
+    document.getElementById('lbCap').textContent = (p.caption || '') + (p.date ? ' · ' + p.date : '');
+  }
+  document.getElementById('galleryFilters').addEventListener('click', function (e) {
+    if (e.target.tagName !== 'BUTTON') return;
+    galleryFilter = e.target.dataset.filter;
+    this.querySelectorAll('button').forEach(function (b) { b.classList.toggle('active', b === e.target); });
+    renderGallery();
+  });
+  document.getElementById('lightbox').addEventListener('click', function (e) { if (e.target === this) closeLightbox(); });
+  document.addEventListener('keydown', function (e) {
+    if (!document.getElementById('lightbox').classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') stepLightbox(-1);
+    if (e.key === 'ArrowRight') stepLightbox(1);
+  });
+  renderGallery();
+
+  function showPage(id) {
+    var sections = document.querySelectorAll('main section');
+    var target = document.getElementById(id) ? id : 'home';
+    sections.forEach(function (s) { s.classList.toggle('active', s.id === target); });
+    document.querySelectorAll('nav a').forEach(function (a) {
+      a.classList.toggle('active', a.dataset.page === target);
+    });
+  }
+  function route() {
+    showPage((location.hash || '#home').slice(1));
+    window.scrollTo(0, 0);
+  }
+  function toggleBib(id) { document.getElementById(id).classList.toggle('open'); }
+  window.addEventListener('hashchange', route);
+  document.getElementById('year').textContent = new Date().getFullYear();
+  route();
+</script>
+</body>
+</html>
