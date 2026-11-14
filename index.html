@@ -90,12 +90,15 @@
   .affil { color: var(--muted); font-size: 0.85rem; margin: 0 0 22px; }
 
   .icons {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 0;
     margin-bottom: 26px;
   }
   .icons a, .icons span {
+    flex: 0 0 25%;
+    min-width: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -413,7 +416,6 @@
       <a href="https://scholar.google.com/citations?hl=en&amp;user=OomReesAAAAJ" target="_blank" rel="noopener"><i class="ai ai-google-scholar"></i>Scholar</a>
       <a href="https://orcid.org/0009-0007-6513-3938" target="_blank" rel="noopener"><i class="ai ai-orcid"></i>ORCID</a>
       <a href="https://github.com/memonsaif" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i>GitHub</a>
-      <span class="pending" title="Coming soon"><i class="ai ai-scopus"></i>Scopus</span>
       <a href="https://www.linkedin.com/in/saifullah-memon-55446785" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i>LinkedIn</a>
       <a href="mailto:saifullah.memon@tmit.bme.hu"><i class="fa-solid fa-envelope"></i>Email</a>
     </div>
