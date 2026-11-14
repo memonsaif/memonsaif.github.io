@@ -617,6 +617,7 @@
   var PHOTOS = [
     { src: "gallery/specom-2026-presentation.jpg", caption: "Presenting my paper on a lightweight LSTM-based iEEG-to-speech decoder at SPECOM 2026, Ohrid, North Macedonia", date: "2026", category: "academic" },
     { src: "gallery/specom-2026-st-naum.jpg", caption: "With fellow SPECOM 2026 participants at the historic Monastery of St. Naum, Lake Ohrid, North Macedonia", date: "2026", category: "academic" },
+    { src: "gallery/tmit-annual-get-together.jpg", caption: "Annual holiday get-together of the TMIT department at BME, bringing together faculty, staff and PhD researchers", date: "2025", category: "memories", pos: "center 35%" },
   ];
 
   var galleryFilter = 'all', lbList = [], lbIndex = 0;
@@ -629,7 +630,7 @@
     }
     grid.innerHTML = lbList.map(function (p, i) {
       return '<figure class="g-item" onclick="openLightbox(' + i + ')">' +
-        '<img src="' + p.src + '" alt="' + (p.caption || '') + '" loading="lazy">' +
+        '<img src="' + p.src + '" alt="' + (p.caption || '') + '" loading="lazy"' + (p.pos ? ' style="object-position:' + p.pos + '"' : '') + '>' +
         '<figcaption>' + (p.caption || '') + (p.date ? '<span class="g-date">' + p.date + '</span>' : '') + '</figcaption></figure>';
     }).join('');
   }
