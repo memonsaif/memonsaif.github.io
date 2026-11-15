@@ -1610,8 +1610,10 @@
           if (!res.ok || String(res.j.success) === 'false') throw new Error(res.j.message || 'failed');
           form.reset(); card.classList.add('done');
         })
-        .catch(function () {
-          err.innerHTML = 'Sorry, the message could not be sent. Please email me at <a href="mailto:saifullah.memon@tmit.bme.hu">saifullah.memon@tmit.bme.hu</a>.';
+        .catch(function (e) {
+          var why = (e && e.message && e.message !== 'failed' && e.message !== 'Failed to fetch') ? ' (' + String(e.message).replace(/[<>]/g, '') + ')' : '';
+          err.innerHTML = 'Sorry, the message could not be sent' + why + '. Please email me at <a href="mailto:saifullah.memon@tmit.bme.hu">saifullah.memon@tmit.bme.hu</a>.';
+          if (window.console) console.warn('Feedback form error:', e);
         })
         .then(function () { send.classList.remove('sending'); send.querySelector('span').textContent = 'Send message'; });
     });
