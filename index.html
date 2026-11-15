@@ -1150,9 +1150,8 @@
 
       <div class="audio-demo" id="audioDemo" hidden>
         <h3>Listen: original and decoded speech</h3>
-        <p>Examples from one participant (sub-06) in the SPECOM 2026 study. For each word you can hear the original speech, resynthesized from its audio features, and the speech the decoder reconstructed from brain activity alone. The pictures show both as spectrograms.</p>
+        <p>Recordings from one participant (sub-06) in the SPECOM 2026 study: the original speech, resynthesized from its audio features, and the speech the decoder reconstructed from brain activity alone.</p>
         <div class="audio-grid" id="audioGrid"></div>
-        <p class="audio-note">These three words are among the clearest examples. To hear typical performance, listen to the full five-minute recordings, which include every word.</p>
         <div class="audio-full" id="audioFull"></div>
         <p class="audio-credit"><span>Data:</span> Verwoert, M., Ottenhoff, M. C., Goulis, S., et al. Dataset of Speech Production in intracranial Electroencephalography. <em>Scientific Data</em> 9, 434 (2022). <a href="https://doi.org/10.1038/s41597-022-01542-9" target="_blank" rel="noopener">doi:10.1038/s41597-022-01542-9</a>. <span>Licence:</span> <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>. <span>Audio derived from participant sub-06.</span></p>
       </div>
@@ -1722,13 +1721,10 @@
      { word: "example", original: "audio/ex1-original.wav", decoded: "audio/ex1-decoded.wav" },
      The section stays hidden while this list is empty. */
   var AUDIO = [
-    { label: "Word 1", original: "audio/ex1-original.mp3", decoded: "audio/ex1-decoded.mp3", spec: "audio/ex1-spec.jpg" },
-    { label: "Word 2", original: "audio/ex2-original.mp3", decoded: "audio/ex2-decoded.mp3", spec: "audio/ex2-spec.jpg" },
-    { label: "Word 3", original: "audio/ex3-original.mp3", decoded: "audio/ex3-decoded.mp3", spec: "audio/ex3-spec.jpg" }
   ];
   var AUDIO_FULL = { original: "audio/sub06-full-original.mp3", decoded: "audio/sub06-full-decoded.mp3" };
   (function renderAudio() {
-    if (!AUDIO.length) return;
+    if (!AUDIO.length && !AUDIO_FULL) return;
     var box = document.getElementById('audioDemo'), grid = document.getElementById('audioGrid');
     grid.innerHTML = AUDIO.map(function (a) {
       return '<div class="audio-pair">' +
