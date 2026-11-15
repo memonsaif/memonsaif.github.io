@@ -766,7 +766,8 @@
   }
   .fb-field textarea { resize: vertical; min-height: 120px; }
   .fb-field input:focus, .fb-field textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); background: #fff; }
-  .fb-field.invalid textarea { border-color: #c0392b; box-shadow: 0 0 0 4px #fbe9e7; }
+  .fb-field.invalid textarea, .fb-field.invalid input { border-color: #c0392b; box-shadow: 0 0 0 4px #fbe9e7; }
+  .fb-field .req { color: #c0392b; font-weight: 600; }
   .fb-hp { position: absolute; left: -9999px; width: 1px; height: 1px; }
   .fb-actions { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; margin-top: 4px; }
   .fb-note { color: var(--muted); font-size: .78rem; max-width: 30ch; }
@@ -1255,13 +1256,13 @@
           <label><input type="radio" name="type" value="Question"><span><i class="fa-regular fa-circle-question"></i> Question</span></label>
         </div>
         <div class="fb-row">
-          <label class="fb-field"><span>Name <em>(optional)</em></span><input name="name" type="text" autocomplete="name" maxlength="100"></label>
-          <label class="fb-field"><span>Email <em>(optional, for a reply)</em></span><input name="email" type="email" autocomplete="email" maxlength="150"></label>
+          <label class="fb-field"><span>Name <b class="req" aria-hidden="true">*</b></span><input name="name" type="text" autocomplete="name" maxlength="100" required></label>
+          <label class="fb-field"><span>Email <b class="req" aria-hidden="true">*</b></span><input name="email" type="email" autocomplete="email" maxlength="150" required></label>
         </div>
-        <label class="fb-field"><span>Message</span><textarea name="message" rows="5" maxlength="3000" required></textarea></label>
+        <label class="fb-field"><span>Message <b class="req" aria-hidden="true">*</b></span><textarea name="message" rows="5" maxlength="3000" required></textarea></label>
         <input type="text" name="_honey" class="fb-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="fb-actions">
-          <small class="fb-note">Sent by email through FormSubmit. Your details are used only to reply to you.</small>
+          <small class="fb-note">All fields are required. Your details are used only to reply to you.</small>
           <button class="fb-send" type="submit"><span>Send message</span><i class="fa-solid fa-paper-plane"></i></button>
         </div>
         <p class="fb-error" id="fbError" role="alert"></p>
@@ -1270,7 +1271,7 @@
     <div class="fb-done" aria-live="polite">
       <div class="fb-check"><svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="24"/><path d="M15 27 l7 7 l15 -16"/></svg></div>
       <h2>Thank you!</h2>
-      <p>Your message has been sent. If you left your email, I will get back to you soon.</p>
+      <p>Your message has been sent. I will get back to you soon.</p>
       <button class="fb-send fb-again" type="button">Close</button>
     </div>
   </div>
@@ -1590,20 +1591,24 @@
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && modal.classList.contains('open')) close(); });
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var msg = form.message.value.trim(), field = form.message.closest('.fb-field');
-      field.classList.toggle('invalid', !msg);
+      var msg = form.message.value.trim(), nm = form.name.value.trim(), em = form.email.value.trim();
+      var emailOk = em && /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em);
+      form.name.closest('.fb-field').classList.toggle('invalid', !nm);
+      form.email.closest('.fb-field').classList.toggle('invalid', !emailOk);
+      form.message.closest('.fb-field').classList.toggle('invalid', !msg);
+      if (!nm) { err.textContent = 'Please enter your name.'; form.name.focus(); return; }
+      if (!em) { err.textContent = 'Please enter your email address.'; form.email.focus(); return; }
+      if (!emailOk) { err.textContent = 'Please check the email address.'; form.email.focus(); return; }
       if (!msg) { err.textContent = 'Please write a message before sending.'; form.message.focus(); return; }
-      if (form.email.value && !form.email.checkValidity()) { err.textContent = 'Please check the email address.'; form.email.focus(); return; }
       if (form._honey.value) return;
       err.textContent = ''; send.classList.add('sending'); send.querySelector('span').textContent = 'Sending…';
       var type = form.querySelector('input[name=type]:checked').value;
       var data = {
-        _subject: 'Website ' + type.toLowerCase() + ' from ' + (form.name.value.trim() || 'a visitor'),
+        _subject: 'Website ' + type.toLowerCase() + ' from ' + nm,
         _template: 'table', _captcha: 'false',
-        type: type, name: form.name.value.trim() || '(not given)', email: form.email.value.trim() || '(not given)',
+        type: type, name: nm, email: em, _replyto: em,
         message: msg, page: location.href
       };
-      if (form.email.value.trim()) data._replyto = form.email.value.trim();
       fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(data) })
         .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
         .then(function (res) {
