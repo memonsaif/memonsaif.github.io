@@ -626,6 +626,27 @@
     .g-thumb { animation: none; opacity: 1; transform: none; }
     .g-slide, .g-slide .cap, .lb-frame { transition: none; }
   }
+
+  /* ---------- Brain with electrode net (page cover) ---------- */
+  .signal-row { display: flex; align-items: center; gap: 8px; max-width: 1120px; }
+  .signal-row .signal { flex: 1; min-width: 0; padding-top: 4px; }
+  .brain { flex: 0 0 158px; width: 158px; height: auto; overflow: visible; margin-top: -18px; }
+  .brain .b-out { fill: rgba(143, 182, 240, .07); stroke: #8fb6f0; stroke-width: 1.5; stroke-linejoin: round; }
+  .brain .b-cb { fill: none; stroke: #8fb6f0; stroke-width: 1.1; opacity: .7; }
+  .brain .gyri path { fill: none; stroke: #8fb6f0; stroke-width: 1; opacity: .32; stroke-linecap: round; }
+  .brain .net line { stroke: #b9d3f7; stroke-width: .7; opacity: .45; stroke-dasharray: 2 2.4; animation: netFlow 1.6s linear infinite; }
+  .brain .elec .e { fill: var(--navy); stroke: #cfe0fa; stroke-width: 1.1; animation: elecFire 2.6s ease-in-out infinite; animation-delay: var(--d); }
+  .brain .elec .halo { fill: var(--gold); opacity: 0; animation: elecHalo 2.6s ease-out infinite; animation-delay: var(--d); }
+  .brain .wire { fill: none; stroke: #8fb6f0; stroke-width: 1.2; stroke-dasharray: 3 3; animation: netFlow 1s linear infinite; }
+  @keyframes netFlow { to { stroke-dashoffset: -8.8; } }
+  @keyframes elecFire { 0%, 55%, 100% { fill: var(--navy); stroke: #cfe0fa; } 12% { fill: var(--gold); stroke: #ffe6a6; } }
+  @keyframes elecHalo { 0%, 100% { opacity: 0; } 12% { opacity: .45; } 40% { opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) {
+    .brain .net line, .brain .wire, .brain .elec .e, .brain .elec .halo { animation: none; }
+  }
+  @media (max-width: 860px) {
+    .brain { flex-basis: 80px; width: 80px; margin-top: -14px; }
+  }
 </style>
 </head>
 <body>
@@ -672,6 +693,15 @@
     <header class="page-band">
       <h1 id="bandTitle">Biography</h1>
       <p id="bandSub"></p>
+        <div class="signal-row">
+        <svg class="brain" viewBox="0 0 124 100" role="img" aria-label="Brain with an EEG electrode net">
+          <path class="b-out" d="M22,62 C9,58 7,39 18,29 C25,15 43,7 59,10 C74,5 93,10 103,24 C113,34 115,51 106,61 C110,71 100,81 88,78 C80,86 66,86 58,80 L55,92 C53,97 46,97 47,90 L49,80 C38,80 28,74 22,62 Z"/>
+          <path class="b-cb" d="M88,78 C94,72 104,70 106,61"/>
+          <g class="gyri"><path d="M26,46 C34,40 40,48 48,42 S60,36 66,40"/><path d="M34,30 C42,26 46,34 54,30 S68,22 76,26"/><path d="M58,56 C66,52 72,60 80,56 S92,48 98,52"/><path d="M70,40 C78,36 82,44 90,40"/><path d="M40,60 C46,56 52,62 56,58"/><path d="M60,18 C66,22 72,18 80,20"/></g>
+          <g class="net"><line x1="21" y1="41" x2="29" y2="56"/><line x1="21" y1="41" x2="30" y2="25"/><line x1="21" y1="41" x2="38" y2="32"/><line x1="29" y1="56" x2="43" y2="67"/><line x1="29" y1="56" x2="46" y2="48"/><line x1="30" y1="25" x2="38" y2="32"/><line x1="30" y1="25" x2="46" y2="16"/><line x1="38" y1="32" x2="46" y2="16"/><line x1="38" y1="32" x2="46" y2="48"/><line x1="38" y1="32" x2="55" y2="29"/><line x1="43" y1="67" x2="46" y2="48"/><line x1="43" y1="67" x2="61" y2="64"/><line x1="46" y1="16" x2="55" y2="29"/><line x1="46" y1="16" x2="62" y2="13"/><line x1="46" y1="48" x2="55" y2="29"/><line x1="46" y1="48" x2="61" y2="64"/><line x1="46" y1="48" x2="64" y2="47"/><line x1="55" y1="29" x2="62" y2="13"/><line x1="55" y1="29" x2="64" y2="47"/><line x1="55" y1="29" x2="72" y2="30"/><line x1="61" y1="64" x2="64" y2="47"/><line x1="61" y1="64" x2="78" y2="69"/><line x1="61" y1="64" x2="81" y2="51"/><line x1="62" y1="13" x2="72" y2="30"/><line x1="62" y1="13" x2="78" y2="15"/><line x1="64" y1="47" x2="72" y2="30"/><line x1="64" y1="47" x2="81" y2="51"/><line x1="72" y1="30" x2="78" y2="15"/><line x1="72" y1="30" x2="81" y2="51"/><line x1="72" y1="30" x2="88" y2="36"/><line x1="72" y1="30" x2="94" y2="24"/><line x1="78" y1="15" x2="88" y2="36"/><line x1="78" y1="15" x2="94" y2="24"/><line x1="78" y1="69" x2="81" y2="51"/><line x1="78" y1="69" x2="97" y2="59"/><line x1="81" y1="51" x2="88" y2="36"/><line x1="81" y1="51" x2="97" y2="59"/><line x1="81" y1="51" x2="103" y2="45"/><line x1="88" y1="36" x2="94" y2="24"/><line x1="88" y1="36" x2="103" y2="45"/><line x1="97" y1="59" x2="103" y2="45"/></g>
+          <g class="elec"><g style="--d:0.45s"><circle class="halo" cx="30" cy="25" r="5.5"/><circle class="e" cx="30" cy="25" r="2.6"/></g><g style="--d:0.69s"><circle class="halo" cx="46" cy="16" r="5.5"/><circle class="e" cx="46" cy="16" r="2.6"/></g><g style="--d:0.93s"><circle class="halo" cx="62" cy="13" r="5.5"/><circle class="e" cx="62" cy="13" r="2.6"/></g><g style="--d:1.17s"><circle class="halo" cx="78" cy="15" r="5.5"/><circle class="e" cx="78" cy="15" r="2.6"/></g><g style="--d:1.41s"><circle class="halo" cx="94" cy="24" r="5.5"/><circle class="e" cx="94" cy="24" r="2.6"/></g><g style="--d:0.32s"><circle class="halo" cx="21" cy="41" r="5.5"/><circle class="e" cx="21" cy="41" r="2.6"/></g><g style="--d:0.57s"><circle class="halo" cx="38" cy="32" r="5.5"/><circle class="e" cx="38" cy="32" r="2.6"/></g><g style="--d:0.82s"><circle class="halo" cx="55" cy="29" r="5.5"/><circle class="e" cx="55" cy="29" r="2.6"/></g><g style="--d:1.08s"><circle class="halo" cx="72" cy="30" r="5.5"/><circle class="e" cx="72" cy="30" r="2.6"/></g><g style="--d:1.32s"><circle class="halo" cx="88" cy="36" r="5.5"/><circle class="e" cx="88" cy="36" r="2.6"/></g><g style="--d:1.54s"><circle class="halo" cx="103" cy="45" r="5.5"/><circle class="e" cx="103" cy="45" r="2.6"/></g><g style="--d:0.43s"><circle class="halo" cx="29" cy="56" r="5.5"/><circle class="e" cx="29" cy="56" r="2.6"/></g><g style="--d:0.69s"><circle class="halo" cx="46" cy="48" r="5.5"/><circle class="e" cx="46" cy="48" r="2.6"/></g><g style="--d:0.96s"><circle class="halo" cx="64" cy="47" r="5.5"/><circle class="e" cx="64" cy="47" r="2.6"/></g><g style="--d:1.22s"><circle class="halo" cx="81" cy="51" r="5.5"/><circle class="e" cx="81" cy="51" r="2.6"/></g><g style="--d:1.46s"><circle class="halo" cx="97" cy="59" r="5.5"/><circle class="e" cx="97" cy="59" r="2.6"/></g><g style="--d:0.65s"><circle class="halo" cx="43" cy="67" r="5.5"/><circle class="e" cx="43" cy="67" r="2.6"/></g><g style="--d:0.91s"><circle class="halo" cx="61" cy="64" r="5.5"/><circle class="e" cx="61" cy="64" r="2.6"/></g><g style="--d:1.17s"><circle class="halo" cx="78" cy="69" r="5.5"/><circle class="e" cx="78" cy="69" r="2.6"/></g></g>
+          <path class="wire" d="M106,61 C114,62 118,58 124,58"/>
+        </svg>
         <figure class="signal" aria-label="Illustration: a brain signal turning into a speech waveform">
         <svg viewBox="0 0 900 96" preserveAspectRatio="none" role="img">
           <defs>
@@ -695,6 +725,7 @@
         </svg>
         <figcaption class="signal-cap"><span>Neural activity</span><span>Decoded speech</span></figcaption>
       </figure>
+        </div>
     </header>
 
     <!-- ========== HOME ========== -->
