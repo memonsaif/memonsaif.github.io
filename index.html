@@ -704,6 +704,104 @@
   @keyframes arcPulse { 0% { opacity: .12; } 25% { opacity: 1; } 70%, 100% { opacity: .12; } }
   @media (prefers-reduced-motion: reduce) { .speaker .arcs path { animation: none; opacity: .8; } .speaker .wire2 { animation: none; } }
   @media (max-width: 860px) { .speaker { flex-basis: 46px; width: 46px; margin-top: -14px; } }
+
+  /* ---------- Feedback button + form ---------- */
+  .fb-fab {
+    position: fixed; right: 22px; bottom: 22px; z-index: 60;
+    display: flex; align-items: center; gap: 9px; padding: 12px 18px 12px 14px;
+    border: 0; border-radius: 999px; cursor: pointer; font: inherit; font-weight: 600; font-size: .92rem;
+    background: var(--gold); color: var(--navy);
+    box-shadow: 0 10px 26px rgba(20, 40, 75, .35);
+    transition: transform .25s cubic-bezier(.3,1.5,.5,1), box-shadow .25s ease;
+  }
+  .fb-fab i { font-size: 1.05rem; }
+  .fb-fab:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 14px 30px rgba(20, 40, 75, .42); }
+  .fb-fab:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+  .fb-fab::before {
+    content: ""; position: absolute; inset: 0; border-radius: inherit; border: 2px solid var(--gold);
+    animation: fabRing 3.2s ease-out infinite; pointer-events: none;
+  }
+  @keyframes fabRing { 0% { transform: scale(1); opacity: .7; } 60%, 100% { transform: scale(1.35); opacity: 0; } }
+  .fb-open-inline {
+    font: inherit; font-weight: 600; cursor: pointer; border-radius: 999px; padding: 9px 18px;
+    border: 1.5px solid var(--navy); background: #fff; color: var(--navy); box-shadow: 3px 3px 0 var(--gold);
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .fb-open-inline:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--gold); }
+
+  .fb-modal {
+    position: fixed; inset: 0; z-index: 120; display: flex; align-items: center; justify-content: center; padding: 20px;
+    background: rgba(8, 16, 32, .6); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+    opacity: 0; visibility: hidden; transition: opacity .3s ease, visibility 0s linear .3s;
+  }
+  .fb-modal.open { opacity: 1; visibility: visible; transition: opacity .3s ease; }
+  .fb-card {
+    position: relative; width: min(600px, 100%); max-height: calc(100vh - 40px); overflow-y: auto;
+    background: #fff; border-radius: 18px; padding: 30px 30px 24px;
+    box-shadow: 0 30px 80px rgba(8, 16, 32, .45); border-top: 5px solid var(--gold);
+    transform: translateY(24px) scale(.97); transition: transform .45s cubic-bezier(.2,.8,.2,1);
+  }
+  .fb-modal.open .fb-card { transform: none; }
+  .fb-card h2 { font-family: var(--serif); color: var(--navy); font-size: 1.6rem; margin: 0 0 6px; }
+  .fb-intro { color: var(--muted); margin: 0 0 18px; font-size: .95rem; }
+  .fb-close { position: absolute; top: 14px; right: 14px; width: 36px; height: 36px; border-radius: 50%; border: 0; cursor: pointer; background: var(--tile); color: var(--navy); }
+  .fb-close:hover { background: var(--accent-soft); }
+  .fb-types { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+  .fb-types input { position: absolute; opacity: 0; pointer-events: none; }
+  .fb-types span {
+    display: inline-flex; align-items: center; gap: 7px; padding: 7px 14px; border-radius: 999px; cursor: pointer;
+    border: 1px solid var(--line); background: var(--tile); color: var(--navy); font-size: .88rem; transition: all .2s ease;
+  }
+  .fb-types input:checked + span { background: var(--navy); border-color: var(--navy); color: #fff; }
+  .fb-types input:checked + span i { color: var(--gold); }
+  .fb-types input:focus-visible + span { outline: 2px solid var(--gold); outline-offset: 2px; }
+  .fb-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .fb-field { display: block; margin-bottom: 12px; }
+  .fb-field > span { display: block; font-size: .85rem; font-weight: 600; color: var(--navy); margin-bottom: 5px; }
+  .fb-field em { font-weight: 400; color: var(--muted); font-style: normal; }
+  .fb-field input, .fb-field textarea {
+    width: 100%; font: inherit; font-size: .95rem; color: var(--text);
+    border: 1.5px solid var(--line); border-radius: 10px; padding: 10px 12px; background: #fbfcfe;
+    transition: border-color .2s ease, box-shadow .2s ease;
+  }
+  .fb-field textarea { resize: vertical; min-height: 120px; }
+  .fb-field input:focus, .fb-field textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); background: #fff; }
+  .fb-field.invalid textarea { border-color: #c0392b; box-shadow: 0 0 0 4px #fbe9e7; }
+  .fb-hp { position: absolute; left: -9999px; width: 1px; height: 1px; }
+  .fb-actions { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; margin-top: 4px; }
+  .fb-note { color: var(--muted); font-size: .78rem; max-width: 30ch; }
+  .fb-send {
+    display: inline-flex; align-items: center; gap: 10px; border: 0; cursor: pointer; font: inherit; font-weight: 600;
+    padding: 11px 22px; border-radius: 999px; background: var(--navy); color: #fff;
+    box-shadow: 0 8px 20px rgba(20, 40, 75, .25); transition: transform .2s ease, background .2s ease;
+  }
+  .fb-send:hover { background: var(--navy-2); transform: translateY(-2px); }
+  .fb-send i { color: var(--gold); transition: transform .4s ease; }
+  .fb-send:hover i { transform: translate(3px, -3px) rotate(8deg); }
+  .fb-send.sending { pointer-events: none; opacity: .85; }
+  .fb-send.sending i { animation: fly 1s ease-in-out infinite; }
+  @keyframes fly { 50% { transform: translate(6px, -6px); opacity: .4; } }
+  .fb-error { color: #b03a2e; font-size: .88rem; margin: 10px 0 0; min-height: 1em; }
+  .fb-done { display: none; text-align: center; padding: 20px 6px 8px; }
+  .fb-card.done .fb-form-wrap { display: none; }
+  .fb-card.done .fb-done { display: block; animation: gFade .4s ease; }
+  .fb-check svg { width: 76px; height: 76px; }
+  .fb-check circle { fill: none; stroke: var(--gold); stroke-width: 3; stroke-dasharray: 151; stroke-dashoffset: 151; }
+  .fb-check path { fill: none; stroke: var(--navy); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 40; stroke-dashoffset: 40; }
+  .fb-card.done .fb-check circle { animation: drawStroke .6s ease forwards; }
+  .fb-card.done .fb-check path { animation: drawStroke .4s ease .5s forwards; }
+  @keyframes drawStroke { to { stroke-dashoffset: 0; } }
+  .fb-done p { color: var(--muted); }
+  @media (max-width: 860px) {
+    .fb-fab { right: 14px; bottom: 14px; padding: 12px; }
+    .fb-fab span { display: none; }
+    .fb-row { grid-template-columns: 1fr; gap: 0; }
+    .fb-card { padding: 26px 18px 18px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .fb-fab::before { animation: none; display: none; }
+    .fb-card, .fb-modal { transition: none; }
+  }
 </style>
 </head>
 <body>
@@ -1124,6 +1222,7 @@
     <section id="contact">
       <h2>Contact</h2>
       <p>I am happy to hear from researchers, students and collaborators interested in neural speech decoding and brain–computer interfaces.</p>
+      <p style="margin:0 0 18px"><button class="fb-open-inline" type="button" data-feedback><i class="fa-solid fa-comment-dots"></i> Send feedback or a suggestion</button></p>
       <ul class="contact-list">
         <li><i class="fa-solid fa-envelope"></i><a href="mailto:saifullah.memon@tmit.bme.hu">saifullah.memon@tmit.bme.hu</a></li>
         <li><i class="fa-brands fa-linkedin"></i><a href="https://www.linkedin.com/in/saifullah-memon-55446785" target="_blank" rel="noopener">linkedin.com/in/saifullah-memon-55446785</a></li>
@@ -1138,6 +1237,43 @@
     </section>
 
   </main>
+</div>
+
+<button class="fb-fab" type="button" data-feedback aria-haspopup="dialog"><i class="fa-solid fa-comment-dots"></i><span>Feedback</span></button>
+
+<div class="fb-modal" id="fbModal" role="dialog" aria-modal="true" aria-labelledby="fbTitle" aria-hidden="true">
+  <div class="fb-card">
+    <button class="fb-close" type="button" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    <div class="fb-form-wrap">
+      <h2 id="fbTitle">Feedback and suggestions</h2>
+      <p class="fb-intro">Comments on my research, ideas for collaboration or suggestions about this page are all welcome. Your message goes straight to my inbox.</p>
+      <form id="fbForm" novalidate>
+        <div class="fb-types" role="radiogroup" aria-label="Type of message">
+          <label><input type="radio" name="type" value="Feedback" checked><span><i class="fa-regular fa-comment"></i> Feedback</span></label>
+          <label><input type="radio" name="type" value="Suggestion"><span><i class="fa-regular fa-lightbulb"></i> Suggestion</span></label>
+          <label><input type="radio" name="type" value="Collaboration"><span><i class="fa-regular fa-handshake"></i> Collaboration</span></label>
+          <label><input type="radio" name="type" value="Question"><span><i class="fa-regular fa-circle-question"></i> Question</span></label>
+        </div>
+        <div class="fb-row">
+          <label class="fb-field"><span>Name <em>(optional)</em></span><input name="name" type="text" autocomplete="name" maxlength="100"></label>
+          <label class="fb-field"><span>Email <em>(optional, for a reply)</em></span><input name="email" type="email" autocomplete="email" maxlength="150"></label>
+        </div>
+        <label class="fb-field"><span>Message</span><textarea name="message" rows="5" maxlength="3000" required></textarea></label>
+        <input type="text" name="_honey" class="fb-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="fb-actions">
+          <small class="fb-note">Sent by email through FormSubmit. Your details are used only to reply to you.</small>
+          <button class="fb-send" type="submit"><span>Send message</span><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+        <p class="fb-error" id="fbError" role="alert"></p>
+      </form>
+    </div>
+    <div class="fb-done" aria-live="polite">
+      <div class="fb-check"><svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="24"/><path d="M15 27 l7 7 l15 -16"/></svg></div>
+      <h2>Thank you!</h2>
+      <p>Your message has been sent. If you left your email, I will get back to you soon.</p>
+      <button class="fb-send fb-again" type="button">Close</button>
+    </div>
+  </div>
 </div>
 
 <footer class="site-footer">
@@ -1430,6 +1566,56 @@
   });
   document.getElementById('year').textContent = new Date().getFullYear();
   route();
+
+  /* ---------- Feedback form (sent by email via FormSubmit) ---------- */
+  (function feedback() {
+    var ENDPOINT = 'https://formsubmit.co/ajax/saifullah.memon@tmit.bme.hu';
+    var modal = document.getElementById('fbModal'), card = modal.querySelector('.fb-card');
+    var form = document.getElementById('fbForm'), err = document.getElementById('fbError');
+    var send = form.querySelector('.fb-send'), lastFocus = null;
+    function open() {
+      lastFocus = document.activeElement;
+      card.classList.remove('done'); err.textContent = '';
+      modal.classList.add('open'); modal.setAttribute('aria-hidden', 'false');
+      setTimeout(function () { form.querySelector('textarea').focus(); }, 250);
+    }
+    function close() {
+      modal.classList.remove('open'); modal.setAttribute('aria-hidden', 'true');
+      if (lastFocus) lastFocus.focus();
+    }
+    document.querySelectorAll('[data-feedback]').forEach(function (b) { b.addEventListener('click', open); });
+    modal.querySelector('.fb-close').addEventListener('click', close);
+    modal.querySelector('.fb-again').addEventListener('click', close);
+    modal.addEventListener('click', function (e) { if (e.target === modal) close(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && modal.classList.contains('open')) close(); });
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var msg = form.message.value.trim(), field = form.message.closest('.fb-field');
+      field.classList.toggle('invalid', !msg);
+      if (!msg) { err.textContent = 'Please write a message before sending.'; form.message.focus(); return; }
+      if (form.email.value && !form.email.checkValidity()) { err.textContent = 'Please check the email address.'; form.email.focus(); return; }
+      if (form._honey.value) return;
+      err.textContent = ''; send.classList.add('sending'); send.querySelector('span').textContent = 'Sending…';
+      var type = form.querySelector('input[name=type]:checked').value;
+      var data = {
+        _subject: 'Website ' + type.toLowerCase() + ' from ' + (form.name.value.trim() || 'a visitor'),
+        _template: 'table', _captcha: 'false',
+        type: type, name: form.name.value.trim() || '(not given)', email: form.email.value.trim() || '(not given)',
+        message: msg, page: location.href
+      };
+      if (form.email.value.trim()) data._replyto = form.email.value.trim();
+      fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(data) })
+        .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+        .then(function (res) {
+          if (!res.ok || String(res.j.success) === 'false') throw new Error(res.j.message || 'failed');
+          form.reset(); card.classList.add('done');
+        })
+        .catch(function () {
+          err.innerHTML = 'Sorry, the message could not be sent. Please email me at <a href="mailto:saifullah.memon@tmit.bme.hu">saifullah.memon@tmit.bme.hu</a>.';
+        })
+        .then(function () { send.classList.remove('sending'); send.querySelector('span').textContent = 'Send message'; });
+    });
+  })();
 </script>
 <script data-goatcounter="https://memonsaif.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
