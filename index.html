@@ -921,6 +921,8 @@
   .play-btn:hover { background: var(--accent-soft); }
   .play-btn.playing { background: var(--navy); color: #fff; }
   .play-btn.playing i { color: var(--gold); }
+  .audio-credit { font-size: .8rem; color: var(--muted); border-left: 3px solid var(--gold); padding: 4px 0 4px 12px; margin: 8px 0 0; }
+  .audio-credit > span:first-child, .audio-credit > span:nth-of-type(2) { font-weight: 600; color: var(--navy); }
   .audio-note { font-size: .88rem; color: var(--muted); margin: 6px 0 10px; }
   .audio-full { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 8px; }
   .audio-full label { display: grid; gap: 4px; font-size: .8rem; font-weight: 600; color: var(--muted); background: var(--tile); border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; }
@@ -1121,6 +1123,7 @@
         <div class="audio-grid" id="audioGrid"></div>
         <p class="audio-note">These three words are among the clearest examples. To hear typical performance, listen to the full five-minute recordings, which include every word.</p>
         <div class="audio-full" id="audioFull"></div>
+        <p class="audio-credit"><span>Data:</span> Verwoert, M., Ottenhoff, M. C., Goulis, S., et al. Dataset of Speech Production in intracranial Electroencephalography. <em>Scientific Data</em> 9, 434 (2022). <a href="https://doi.org/10.1038/s41597-022-01542-9" target="_blank" rel="noopener">doi:10.1038/s41597-022-01542-9</a>. <span>Licence:</span> <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>. <span>Audio derived from participant sub-06.</span></p>
       </div>
 
       <h3>Key findings</h3>
