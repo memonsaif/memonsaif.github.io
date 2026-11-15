@@ -807,44 +807,56 @@
   }
 
   /* ---------- Navigation bar under the cover ---------- */
-  .page-band .topnav { margin: 26px 0 0; max-width: 1120px; }
-  .page-band .topnav ul {
+  .topnav {
+    position: sticky; top: 0; z-index: 40; margin: 0;
+    padding: 14px 56px 12px; background: var(--navy-2);
+    transition: background .3s ease, box-shadow .3s ease, padding .3s ease;
+  }
+  .topnav ul { max-width: 1120px; }
+  .topnav.stuck {
+    background: rgba(20, 40, 75, .92); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 10px 28px rgba(8, 16, 32, .28); padding-top: 8px; padding-bottom: 8px;
+  }
+  .band-tail { height: 88px; background: var(--navy-2); }
+  .topnav ul {
     position: relative; display: flex; flex-wrap: nowrap; gap: 2px; padding: 5px; margin: 0;
     background: rgba(8, 18, 38, .35); border: 1px solid rgba(255,255,255,.10); border-radius: 16px;
     backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
     overflow-x: auto; scrollbar-width: none;
   }
-  .page-band .topnav ul::-webkit-scrollbar { display: none; }
-  .page-band .topnav li { list-style: none; flex: 1 0 auto; }
-  .page-band .topnav .nav-pill {
+  .topnav ul::-webkit-scrollbar { display: none; }
+  .topnav li { list-style: none; flex: 1 0 auto; }
+  .topnav .nav-pill {
     display: block; right: auto; bottom: auto;
     transition: left .45s cubic-bezier(.3,1.3,.4,1), width .35s ease, top .3s ease, height .3s ease, opacity .3s ease;
     box-shadow: inset 0 -3px 0 var(--gold), 0 6px 18px rgba(0,0,0,.2);
   }
-  .page-band .topnav a { padding: 5px 12px 5px 5px; gap: 8px; font-size: .9rem; white-space: nowrap; border: 0; justify-content: center; }
-  .page-band .topnav .nav-tx { flex: 0 0 auto; }
-  .page-band .topnav .nav-ic { flex-basis: 28px; height: 28px; font-size: .8rem; }
-  .page-band .topnav .nav-go { display: none; }
-  .page-band .topnav a.active { background: transparent; color: #fff; }
-  .page-band .topnav a.active .nav-ic { background: var(--gold); color: var(--navy); }
-  .page-band { padding-bottom: 104px; }
+  .topnav a { padding: 5px 12px 5px 5px; gap: 8px; font-size: .9rem; white-space: nowrap; border: 0; justify-content: center; }
+  .topnav .nav-tx { flex: 0 0 auto; }
+  .topnav .nav-ic { flex-basis: 28px; height: 28px; font-size: .8rem; }
+  .topnav .nav-go { display: none; }
+  .topnav a.active { background: transparent; color: #fff; }
+  .topnav a.active .nav-ic { background: var(--gold); color: var(--navy); }
+  .page-band { padding-bottom: 6px; }
   @media (min-width: 861px) and (max-width: 1260px) {
-    .page-band .topnav ul { display: grid; grid-template-columns: repeat(4, 1fr); overflow: visible; }
-    .page-band .topnav a { justify-content: flex-start; }
+    .topnav ul { display: grid; grid-template-columns: repeat(4, 1fr); overflow: visible; }
+    .topnav a { justify-content: flex-start; }
   }
   @media (max-width: 860px) {
-    .page-band .topnav { margin: 18px -20px 0; }
-    .page-band .topnav ul {
+    .topnav { margin: 0; padding: 10px 0 10px; }
+    .topnav.stuck { padding: 6px 0; }
+    .band-tail { height: 70px; }
+    .topnav ul {
       flex-wrap: nowrap; overflow-x: auto; width: auto; border-radius: 0; border-left: 0; border-right: 0;
       padding: 6px 16px; scrollbar-width: none; scroll-snap-type: x proximity;
     }
-    .page-band .topnav ul::-webkit-scrollbar { display: none; }
-    .page-band .topnav li { scroll-snap-align: start; flex: 0 0 auto; }
-    .page-band .topnav a { border: 0; border-radius: 12px; font-size: .86rem; padding: 5px 12px 5px 5px; }
-    .page-band .topnav a.active { background: transparent; color: #fff; border: 0; }
-    .page-band .topnav a.active .nav-ic { background: var(--gold); color: var(--navy); }
-    .page-band .topnav .nav-ic { flex-basis: 26px; height: 26px; border-radius: 8px; }
-    .page-band { padding-bottom: 86px; }
+    .topnav ul::-webkit-scrollbar { display: none; }
+    .topnav li { scroll-snap-align: start; flex: 0 0 auto; }
+    .topnav a { border: 0; border-radius: 12px; font-size: .86rem; padding: 5px 12px 5px 5px; }
+    .topnav a.active { background: transparent; color: #fff; border: 0; }
+    .topnav a.active .nav-ic { background: var(--gold); color: var(--navy); }
+    .topnav .nav-ic { flex-basis: 26px; height: 26px; border-radius: 8px; }
+    .page-band { padding-bottom: 4px; }
   }
 </style>
 </head>
@@ -922,20 +934,21 @@
           </g>
         </svg>
         </div>
-      <nav class="topnav" aria-label="Main">
-        <ul>
-          <li class="nav-pill" aria-hidden="true"></li>
-          <li><a href="#home" data-page="home"><span class="nav-ic"><i class="fa-solid fa-house"></i></span><span class="nav-tx">Home</span><i class="fa-solid fa-chevron-right nav-go" aria-hidden="true"></i></a></li>
-          <li><a href="#research" data-page="research"><span class="nav-ic"><i class="fa-solid fa-brain"></i></span><span class="nav-tx">Research</span><i class="fa-solid fa-chevron-right nav-go" aria-hidden="true"></i></a></li>
-          <li><a href="#publications" data-page="publications"><span class="nav-ic"><i class="fa-solid fa-book-open"></i></span><span class="nav-tx">Publications</span><i class="fa-solid fa-chevron-right nav-go" aria-hidden="true"></i></a></li>
-          <li><a href="#projects" data-page="projects"><span class="nav-ic"><i class="fa-solid fa-flask"></i></span><span class="nav-tx">Projects</span><i class="fa-solid fa-chevron-right nav-go" aria-hidden="true"></i></a></li>
-          <li><a href="#teaching" data-page="teaching"><span class="nav-ic"><i class="fa-solid fa-chalkboard-user"></i></span><span class="nav-tx">Teaching</span><i class="fa-solid fa-chevron-right nav-go" aria-hidden="true"></i></a></li>
-          <li><a href="#cv" data-page="cv"><span class="nav-ic"><i class="fa-solid fa-id-card"></i></span><span class="nav-tx">CV</span><i class="fa-solid fa-chevron-right nav-go" aria-hidden="true"></i></a></li>
-          <li><a href="#gallery" data-page="gallery"><span class="nav-ic"><i class="fa-solid fa-images"></i></span><span class="nav-tx">Gallery</span><i class="fa-solid fa-chevron-right nav-go" aria-hidden="true"></i></a></li>
-          <li><a href="#contact" data-page="contact"><span class="nav-ic"><i class="fa-solid fa-envelope"></i></span><span class="nav-tx">Contact</span><i class="fa-solid fa-chevron-right nav-go" aria-hidden="true"></i></a></li>
-        </ul>
-      </nav>
     </header>
+    <nav class="topnav" aria-label="Main">
+      <ul>
+        <li class="nav-pill" aria-hidden="true"></li>
+        <li><a href="#home" data-page="home"><span class="nav-ic"><i class="fa-solid fa-house"></i></span><span class="nav-tx">Home</span><i class="fa-solid fa-chevron-right nav-go" aria-hidden="true"></i></a></li>
+        <li><a href="#research" data-page="research"><span class="nav-ic"><i class="fa-solid fa-brain"></i></span><span class="nav-tx">Research</span><i class="fa-solid fa-chevron-right nav-go" aria-hidden="true"></i></a></li>
+        <li><a href="#publications" data-page="publications"><span class="nav-ic"><i class="fa-solid fa-book-open"></i></span><span class="nav-tx">Publications</span><i class="fa-solid fa-chevron-right nav-go" aria-hidden="true"></i></a></li>
+        <li><a href="#projects" data-page="projects"><span class="nav-ic"><i class="fa-solid fa-flask"></i></span><span class="nav-tx">Projects</span><i class="fa-solid fa-chevron-right nav-go" aria-hidden="true"></i></a></li>
+        <li><a href="#teaching" data-page="teaching"><span class="nav-ic"><i class="fa-solid fa-chalkboard-user"></i></span><span class="nav-tx">Teaching</span><i class="fa-solid fa-chevron-right nav-go" aria-hidden="true"></i></a></li>
+        <li><a href="#cv" data-page="cv"><span class="nav-ic"><i class="fa-solid fa-id-card"></i></span><span class="nav-tx">CV</span><i class="fa-solid fa-chevron-right nav-go" aria-hidden="true"></i></a></li>
+        <li><a href="#gallery" data-page="gallery"><span class="nav-ic"><i class="fa-solid fa-images"></i></span><span class="nav-tx">Gallery</span><i class="fa-solid fa-chevron-right nav-go" aria-hidden="true"></i></a></li>
+        <li><a href="#contact" data-page="contact"><span class="nav-ic"><i class="fa-solid fa-envelope"></i></span><span class="nav-tx">Contact</span><i class="fa-solid fa-chevron-right nav-go" aria-hidden="true"></i></a></li>
+      </ul>
+    </nav>
+    <div class="band-tail" aria-hidden="true"></div>
 
     <!-- ========== HOME ========== -->
     <section id="home">
@@ -1569,6 +1582,14 @@
     if (a.scrollIntoView && window.innerWidth <= 860) { var ul = li.parentElement; ul.scrollTo({ left: li.offsetLeft - 16, behavior: 'smooth' }); }
   }
   window.addEventListener('resize', movePill);
+  (function stickyNav() {
+    var nav = document.querySelector('.topnav'); if (!nav) return;
+    var sentinel = document.createElement('div'); sentinel.style.height = '1px'; sentinel.style.background = 'var(--navy-2)'; sentinel.setAttribute('aria-hidden', 'true');
+    nav.parentNode.insertBefore(sentinel, nav);
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (en) { nav.classList.toggle('stuck', !en[0].isIntersecting); }).observe(sentinel);
+    }
+  })();
   function showPage(id) {
     var sections = document.querySelectorAll('main section');
     if (id === 'supervising') id = 'teaching';
