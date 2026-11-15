@@ -647,6 +647,53 @@
   @media (max-width: 860px) {
     .brain { flex-basis: 80px; width: 80px; margin-top: -14px; }
   }
+
+  /* ---------- Navigation buttons ---------- */
+  nav ul { position: relative; border-top: none; display: grid; gap: 4px; }
+  nav li { border-bottom: none; position: relative; z-index: 1; }
+  .nav-pill {
+    position: absolute; left: 0; right: 0; top: 0; height: 0; z-index: 0; pointer-events: none;
+    border-radius: 12px; background: linear-gradient(90deg, rgba(195,154,58,.22), rgba(255,255,255,.06));
+    box-shadow: inset 3px 0 0 var(--gold), 0 6px 18px rgba(0,0,0,.18);
+    transition: top .45s cubic-bezier(.3,1.3,.4,1), height .3s ease, opacity .3s ease;
+  }
+  nav a {
+    display: flex; align-items: center; gap: 12px;
+    padding: 7px 12px 7px 8px; border-radius: 12px; border-left: none;
+    color: #d7e0ef; font-weight: 500; letter-spacing: .01em;
+    transition: background .25s ease, color .25s ease;
+  }
+  nav a.active { background: transparent; border-left: none; }
+  .nav-ic {
+    flex: 0 0 32px; height: 32px; border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(255,255,255,.07); color: #b9cbe8; font-size: .86rem;
+    transition: background .3s ease, color .3s ease, transform .35s cubic-bezier(.3,1.5,.5,1), box-shadow .3s ease;
+  }
+  .nav-tx { flex: 1; transition: transform .3s cubic-bezier(.2,.7,.2,1); }
+  .nav-go { font-size: .7rem; color: var(--gold); opacity: 0; transform: translateX(-6px); transition: opacity .25s ease, transform .3s ease; }
+  nav a:hover { background: rgba(255,255,255,.06); color: #fff; text-decoration: none; }
+  nav a:hover .nav-ic { background: rgba(195,154,58,.25); color: #ffe3a3; transform: rotate(-8deg) scale(1.08); }
+  nav a:hover .nav-tx { transform: translateX(3px); }
+  nav a:hover .nav-go { opacity: .9; transform: none; }
+  nav a.active { color: #fff; }
+  nav a.active .nav-ic { background: var(--gold); color: var(--navy); box-shadow: 0 4px 14px rgba(195,154,58,.45); transform: none; }
+  nav a.active .nav-go { opacity: 1; transform: none; }
+  nav a.active:hover { background: transparent; }
+  nav a:active .nav-ic { transform: scale(.92); }
+  nav a:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce) {
+    .nav-pill, .nav-ic, .nav-tx, .nav-go { transition: none; }
+  }
+  @media (max-width: 860px) {
+    nav ul { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+    .nav-pill { display: none; }
+    nav a { padding: 5px 12px 5px 5px; gap: 8px; border: 1px solid rgba(255,255,255,.16); border-radius: 999px; font-size: .86rem; }
+    .nav-ic { flex-basis: 26px; height: 26px; border-radius: 50%; font-size: .72rem; }
+    .nav-go { display: none; }
+    nav a.active { background: var(--gold); border-color: var(--gold); color: var(--navy); }
+    nav a.active .nav-ic { background: var(--navy); color: var(--gold); box-shadow: none; }
+  }
 </style>
 </head>
 <body>
@@ -676,14 +723,15 @@
 
     <nav>
       <ul>
-        <li><a href="#home" data-page="home">Home</a></li>
-        <li><a href="#research" data-page="research">Research</a></li>
-        <li><a href="#publications" data-page="publications">Publications</a></li>
-        <li><a href="#projects" data-page="projects">Projects</a></li>
-        <li><a href="#teaching" data-page="teaching">Teaching</a></li>
-        <li><a href="#cv" data-page="cv">CV</a></li>
-        <li><a href="#gallery" data-page="gallery">Gallery</a></li>
-        <li><a href="#contact" data-page="contact">Contact</a></li>
+        <li class="nav-pill" aria-hidden="true"></li>
+        <li><a href="#home" data-page="home"><span class="nav-ic"><i class="fa-solid fa-house"></i></span><span class="nav-tx">Home</span><i class="fa-solid fa-chevron-right nav-go" aria-hidden="true"></i></a></li>
+        <li><a href="#research" data-page="research"><span class="nav-ic"><i class="fa-solid fa-brain"></i></span><span class="nav-tx">Research</span><i class="fa-solid fa-chevron-right nav-go" aria-hidden="true"></i></a></li>
+        <li><a href="#publications" data-page="publications"><span class="nav-ic"><i class="fa-solid fa-book-open"></i></span><span class="nav-tx">Publications</span><i class="fa-solid fa-chevron-right nav-go" aria-hidden="true"></i></a></li>
+        <li><a href="#projects" data-page="projects"><span class="nav-ic"><i class="fa-solid fa-flask"></i></span><span class="nav-tx">Projects</span><i class="fa-solid fa-chevron-right nav-go" aria-hidden="true"></i></a></li>
+        <li><a href="#teaching" data-page="teaching"><span class="nav-ic"><i class="fa-solid fa-chalkboard-user"></i></span><span class="nav-tx">Teaching</span><i class="fa-solid fa-chevron-right nav-go" aria-hidden="true"></i></a></li>
+        <li><a href="#cv" data-page="cv"><span class="nav-ic"><i class="fa-solid fa-id-card"></i></span><span class="nav-tx">CV</span><i class="fa-solid fa-chevron-right nav-go" aria-hidden="true"></i></a></li>
+        <li><a href="#gallery" data-page="gallery"><span class="nav-ic"><i class="fa-solid fa-images"></i></span><span class="nav-tx">Gallery</span><i class="fa-solid fa-chevron-right nav-go" aria-hidden="true"></i></a></li>
+        <li><a href="#contact" data-page="contact"><span class="nav-ic"><i class="fa-solid fa-envelope"></i></span><span class="nav-tx">Contact</span><i class="fa-solid fa-chevron-right nav-go" aria-hidden="true"></i></a></li>
       </ul>
     </nav>
   </aside>
@@ -1307,6 +1355,14 @@
     requestAnimationFrame(loop);
   })();
 
+  function movePill() {
+    var pill = document.querySelector('.nav-pill'), a = document.querySelector('nav a.active');
+    if (!pill) return;
+    if (!a) { pill.style.opacity = 0; return; }
+    var li = a.parentElement;
+    pill.style.opacity = 1; pill.style.top = li.offsetTop + 'px'; pill.style.height = li.offsetHeight + 'px';
+  }
+  window.addEventListener('resize', movePill);
   function showPage(id) {
     var sections = document.querySelectorAll('main section');
     if (id === 'supervising') id = 'teaching';
@@ -1315,6 +1371,7 @@
     document.querySelectorAll('nav a').forEach(function (a) {
       a.classList.toggle('active', a.dataset.page === target);
     });
+    movePill();
     var h = document.querySelector('#' + target + ' > h2');
     document.getElementById('bandTitle').textContent = h ? h.textContent : '';
     document.getElementById('bandSub').textContent = BAND_SUB[target] || '';
