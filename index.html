@@ -932,6 +932,37 @@
   .audio-pair label { display: grid; gap: 4px; font-size: .8rem; color: var(--muted); font-weight: 600; }
   .audio-pair .dec { color: var(--gold); }
   .audio-pair audio { width: 100%; height: 36px; }
+
+  /* ---------- Gallery: compact showcase (photo + caption panel) ---------- */
+  .g-showcase { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); gap: 26px; align-items: start; }
+  .g-showcase .g-stage { aspect-ratio: 3 / 2; max-height: 360px; width: 100%; margin: 0; border-radius: 12px; box-shadow: 0 10px 26px rgba(20, 40, 75, .16); }
+  .g-showcase .g-slide .cap, .g-showcase .g-slide .shade { display: none; }
+  .g-showcase .g-slide.on .fg { animation-duration: 9s; }
+  @keyframes kenburns { from { transform: scale(1.0); } to { transform: scale(1.05); } }
+  .g-showcase .g-expand { opacity: 1; background: rgba(12, 26, 50, .45); }
+  .g-info { display: flex; flex-direction: column; gap: 14px; min-height: 100%; }
+  .g-meta { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .g-when { display: inline-block; background: var(--gold); color: var(--navy); font-size: .76rem; font-weight: 700; padding: 2px 10px; border-radius: 999px; }
+  .g-when:empty { display: none; }
+  .g-count { font-size: .82rem; font-weight: 600; color: var(--muted); letter-spacing: .03em; }
+  .g-caption { font-family: var(--serif); color: var(--navy); font-size: 1.15rem; line-height: 1.45; margin: 0; min-height: 4.4em; }
+  .g-caption.swap { animation: capIn .5s ease; }
+  @keyframes capIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  .g-controls { display: flex; align-items: center; gap: 10px; }
+  .g-showcase .g-nav {
+    position: static; margin: 0; opacity: 1; flex: 0 0 34px; width: 34px; height: 34px; border-radius: 50%;
+    background: #fff; color: var(--navy); border: 1px solid var(--line); backdrop-filter: none;
+  }
+  .g-showcase .g-nav:hover { background: var(--navy); color: #fff; transform: none; }
+  .g-showcase .g-progress { position: static; flex: 1; }
+  .g-showcase .g-progress button { background: var(--line); height: 4px; }
+  .g-showcase .g-thumbs { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .g-showcase .g-thumb { aspect-ratio: 4 / 3; border-radius: 8px; }
+  .g-showcase .g-thumb span { display: none; }
+  .g-showcase .g-thumb:not(.on) img { filter: saturate(.7) brightness(.85); }
+  @media (max-width: 1100px) { .g-showcase { grid-template-columns: 1fr; } .g-showcase .g-stage { max-height: none; } .g-caption { min-height: 0; } }
+  @media (max-width: 860px) { .g-showcase .g-nav { display: flex; } .g-showcase .g-thumbs { grid-template-columns: repeat(4, 1fr); } }
+  @media (prefers-reduced-motion: reduce) { .g-caption.swap { animation: none; } }
 </style>
 <script type="application/ld+json">
 {
@@ -1381,14 +1412,22 @@
         <button data-filter="academic">Academic</button>
         <button data-filter="memories">Memories</button>
       </div>
-      <div class="g-stage" id="gStage" tabindex="0" aria-roledescription="carousel" aria-label="Photo slideshow">
-        <div class="g-slides" id="gSlides"></div>
-        <button class="g-nav g-prev" aria-label="Previous photo"><i class="fa-solid fa-chevron-left"></i></button>
-        <button class="g-nav g-next" aria-label="Next photo"><i class="fa-solid fa-chevron-right"></i></button>
-        <button class="g-expand" aria-label="View full size"><i class="fa-solid fa-expand"></i></button>
-        <div class="g-progress" id="gProgress"></div>
+      <div class="g-showcase" id="gShowcase">
+        <div class="g-stage" id="gStage" tabindex="0" aria-roledescription="carousel" aria-label="Photo slideshow">
+          <div class="g-slides" id="gSlides"></div>
+          <button class="g-expand" aria-label="View full size"><i class="fa-solid fa-expand"></i></button>
+        </div>
+        <div class="g-info">
+          <div class="g-meta"><span class="g-when" id="gWhen"></span><span class="g-count" id="gCount"></span></div>
+          <p class="g-caption" id="gCaption" aria-live="polite"></p>
+          <div class="g-controls">
+            <button class="g-nav g-prev" aria-label="Previous photo"><i class="fa-solid fa-arrow-left"></i></button>
+            <div class="g-progress" id="gProgress"></div>
+            <button class="g-nav g-next" aria-label="Next photo"><i class="fa-solid fa-arrow-right"></i></button>
+          </div>
+          <div class="g-thumbs" id="galleryGrid"></div>
+        </div>
       </div>
-      <div class="g-thumbs" id="galleryGrid"></div>
     </section>
 
     <!-- ========== CONTACT ========== -->
@@ -1551,7 +1590,7 @@
   function esc(t) { return String(t || '').replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
 
   function renderGallery() {
-    var stage = document.getElementById('gStage'), slides = document.getElementById('gSlides');
+    var stage = document.getElementById('gShowcase'), slides = document.getElementById('gSlides');
     var grid = document.getElementById('galleryGrid'), prog = document.getElementById('gProgress');
     lbList = PHOTOS.filter(function (p) { return galleryFilter === 'all' || p.category === galleryFilter; });
     clearTimeout(gTimer);
@@ -1587,6 +1626,11 @@
     gIndex = (n + lbList.length) % lbList.length;
     document.querySelectorAll('#gSlides .g-slide').forEach(function (el, i) { el.classList.toggle('on', i === gIndex); });
     document.querySelectorAll('#galleryGrid .g-thumb').forEach(function (el, i) { el.classList.toggle('on', i === gIndex); });
+    var cp = lbList[gIndex], capEl = document.getElementById('gCaption');
+    capEl.classList.remove('swap'); void capEl.offsetWidth; capEl.classList.add('swap');
+    capEl.textContent = T(cp.caption || '');
+    document.getElementById('gWhen').textContent = cp.date || '';
+    document.getElementById('gCount').textContent = (gIndex + 1) + ' / ' + lbList.length;
     document.querySelectorAll('#gProgress button').forEach(function (b, i) {
       b.classList.remove('run'); b.classList.toggle('done', i < gIndex);
       if (i === gIndex) { void b.offsetWidth; b.style.setProperty('--g-dur', G_DUR + 'ms'); b.classList.add('run'); }
@@ -1606,8 +1650,9 @@
     function pause(v) { gPaused = v; stage.classList.toggle('paused', v); if (!v) goSlide(gIndex); }
     stage.addEventListener('mouseenter', function () { pause(true); });
     stage.addEventListener('mouseleave', function () { pause(false); });
-    stage.querySelector('.g-prev').addEventListener('click', function (e) { e.stopPropagation(); goSlide(gIndex - 1); });
-    stage.querySelector('.g-next').addEventListener('click', function (e) { e.stopPropagation(); goSlide(gIndex + 1); });
+    var show = document.getElementById('gShowcase');
+    show.querySelector('.g-prev').addEventListener('click', function (e) { e.stopPropagation(); goSlide(gIndex - 1); });
+    show.querySelector('.g-next').addEventListener('click', function (e) { e.stopPropagation(); goSlide(gIndex + 1); });
     stage.querySelector('.g-expand').addEventListener('click', function (e) { e.stopPropagation(); openLightbox(gIndex); });
     document.getElementById('gSlides').addEventListener('click', function () { openLightbox(gIndex); });
     document.getElementById('gProgress').addEventListener('click', function (e) {
