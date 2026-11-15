@@ -963,6 +963,36 @@
   @media (max-width: 1100px) { .g-showcase { grid-template-columns: 1fr; } .g-showcase .g-stage { max-height: none; } .g-caption { min-height: 0; } }
   @media (max-width: 860px) { .g-showcase .g-nav { display: flex; } .g-showcase .g-thumbs { grid-template-columns: repeat(4, 1fr); } }
   @media (prefers-reduced-motion: reduce) { .g-caption.swap { animation: none; } }
+
+  /* ---------- Back to top, cite, toast, accessibility ---------- */
+  .to-top {
+    position: fixed; right: 30px; bottom: 86px; z-index: 59; width: 44px; height: 44px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,.25); background: var(--navy); color: var(--gold); cursor: pointer; font-size: 1rem;
+    box-shadow: 0 8px 20px rgba(20, 40, 75, .3);
+    opacity: 0; visibility: hidden; transform: translateY(10px);
+    transition: opacity .3s ease, transform .3s ease, visibility 0s linear .3s, background .2s ease;
+  }
+  .to-top.show { opacity: 1; visibility: visible; transform: none; transition: opacity .3s ease, transform .3s ease, background .2s ease; }
+  .to-top:hover { background: var(--navy-2); transform: translateY(-2px); }
+  .to-top:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+  .pub-links .cite-btn i { margin-right: 2px; }
+  .toast {
+    position: fixed; left: 50%; bottom: 28px; z-index: 130; transform: translate(-50%, 20px);
+    background: var(--navy); color: #fff; padding: 10px 18px; border-radius: 999px; font-size: .9rem;
+    box-shadow: 0 10px 26px rgba(0,0,0,.25); opacity: 0; pointer-events: none; transition: opacity .3s ease, transform .3s ease;
+  }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+  .toast i { color: var(--gold); margin-right: 6px; }
+  .skip-link {
+    position: absolute; left: 12px; top: -60px; z-index: 200; background: var(--gold); color: var(--navy);
+    padding: 10px 16px; border-radius: 0 0 10px 10px; font-weight: 600; transition: top .2s ease;
+  }
+  .skip-link:focus { top: 0; text-decoration: none; outline: 3px solid #fff; }
+  main:focus { outline: none; }
+  .news .date { color: #8a6a1e; }
+  main section p a, main section .news a, .contact-list span a { text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
+  main section p a.pub-btn, main section .pub-links a { text-decoration: none; }
+  @media (max-width: 860px) { .to-top { right: 18px; bottom: 76px; width: 40px; height: 40px; } }
 </style>
 <script type="application/ld+json">
 {
@@ -995,6 +1025,7 @@
 </script>
 </head>
 <body>
+<a class="skip-link" href="#home" id="skipLink">Skip to content</a>
 <div class="layout">
 
   <!-- ===================== SIDEBAR ===================== -->
@@ -1022,7 +1053,7 @@
   </aside>
 
   <!-- ===================== CONTENT ===================== -->
-  <main>
+  <main id="main" tabindex="-1">
     <header class="page-band">
       <div class="lang-switch" role="group" aria-label="Language">
         <button type="button" data-lang="en" lang="en">EN</button><button type="button" data-lang="hu" lang="hu">HU</button>
@@ -1039,7 +1070,7 @@
           <path class="wire" d="M106,61 C114,62 118,58 124,58"/>
         </svg>
         <figure class="signal" aria-label="Illustration: a brain signal turning into a speech waveform">
-        <svg viewBox="0 0 900 96" preserveAspectRatio="none" role="img">
+        <svg viewBox="0 0 900 96" preserveAspectRatio="none" role="img" aria-labelledby="sigTitle"><title id="sigTitle">Animated signal: neural activity being decoded into speech</title>
           <defs>
             <linearGradient id="sigFade" x1="0" x2="1" y1="0" y2="0">
               <stop offset="0" stop-color="#8fb6f0" stop-opacity=".35"/>
@@ -1259,7 +1290,7 @@
           <div class="pub-links">
             <a class="pub-btn" href="https://link.springer.com/book/10.1007/978-3-032-37870-5" target="_blank" rel="noopener">Springer</a>
             <a class="pub-btn" href="https://github.com/Saifullah74/iEEG2Mel-Unseen" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> Code</a>
-            <button onclick="toggleBib('bib1')">BibTeX</button>
+            <button type="button" class="cite-btn" data-cite="Memon, S., &amp; Al-Radhi, M. S. (2026). A lightweight LSTM-based iEEG-to-speech decoder with event-level unseen neural pattern detection. In Speech and Computer (SPECOM 2026) (Lecture Notes in Computer Science, Vol. 16935, pp. 183–197). Springer."><i class="fa-regular fa-copy"></i> Cite</button> <button type="button" onclick="toggleBib('bib1')">BibTeX</button>
           </div>
 <pre class="bib" id="bib1">@inproceedings{memon2026lstm,
   author    = {Memon, Saifullah and Al-Radhi, Mohammed Salah},
@@ -1281,7 +1312,7 @@
           <span class="pub-title">Neural Decoding of Imagined Speech from Scalp EEG: A Review of Deep Learning Architectures, Datasets, and Open Challenges.</span>
           <em>AI</em>, MDPI.
           <span class="badge review">Under review</span>
-          <div class="pub-links"><button onclick="toggleBib('bib4')">BibTeX</button></div>
+          <div class="pub-links"><button type="button" class="cite-btn" data-cite="Memon, S., &amp; Al-Radhi, M. S. (2026). Neural decoding of imagined speech from scalp EEG: A review of deep learning architectures, datasets, and open challenges [Manuscript submitted for publication]. AI."><i class="fa-regular fa-copy"></i> Cite</button> <button type="button" onclick="toggleBib('bib4')">BibTeX</button></div>
 <pre class="bib" id="bib4">@article{memon2026eegreview,
   author  = {Memon, Saifullah and Al-Radhi, Mohammed Salah},
   title   = {Neural Decoding of Imagined Speech from Scalp EEG: A Review of Deep Learning Architectures, Datasets, and Open Challenges},
@@ -1296,7 +1327,7 @@
           <span class="pub-title">EEG-Based Imagined Speech Decoding Beyond Accuracy: A Systematic Review of Evaluation Validity, Cross-Subject Generalization, and Translational Readiness.</span>
           <em>Neuroscience Informatics</em>.
           <span class="badge review">Under review</span>
-          <div class="pub-links"><button onclick="toggleBib('bib3')">BibTeX</button></div>
+          <div class="pub-links"><button type="button" class="cite-btn" data-cite="Al-Radhi, M. S., &amp; Memon, S. (2026). EEG-based imagined speech decoding beyond accuracy: A systematic review of evaluation validity, cross-subject generalization, and translational readiness [Manuscript submitted for publication]. Neuroscience Informatics."><i class="fa-regular fa-copy"></i> Cite</button> <button type="button" onclick="toggleBib('bib3')">BibTeX</button></div>
 <pre class="bib" id="bib3">@article{alradhi2026eegreview,
   author  = {Al-Radhi, Mohammed Salah and Memon, Saifullah},
   title   = {EEG-Based Imagined Speech Decoding Beyond Accuracy: A Systematic Review of Evaluation Validity, Cross-Subject Generalization, and Translational Readiness},
@@ -1452,6 +1483,9 @@
 </div>
 
 <button class="fb-fab" type="button" data-feedback aria-haspopup="dialog"><i class="fa-solid fa-comment-dots"></i><span>Feedback</span></button>
+
+<button class="to-top" type="button" id="toTop" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <div class="fb-modal" id="fbModal" role="dialog" aria-modal="true" aria-labelledby="fbTitle" aria-hidden="true">
   <div class="fb-card">
@@ -1768,6 +1802,43 @@
     if (path === gcLast) return; gcLast = path;
     goatcounter.count({ path: path, title: 'Saifullah Memon – ' + id });
   };
+
+  /* ---------- Back to top, cite buttons, skip link ---------- */
+  (function extras() {
+    var top = document.getElementById('toTop');
+    function onScroll() { top.classList.toggle('show', window.scrollY > 600); }
+    window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+    top.addEventListener('click', function () {
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+      var a = document.querySelector('.topnav a.active'); if (a) a.focus({ preventScroll: true });
+    });
+    var toast = document.getElementById('toast'), tt;
+    function showToast(msg) {
+      toast.innerHTML = '<i class="fa-solid fa-check"></i>' + msg; toast.classList.add('show');
+      clearTimeout(tt); tt = setTimeout(function () { toast.classList.remove('show'); }, 2200);
+    }
+    function copy(text) {
+      if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
+      return new Promise(function (res, rej) {
+        var ta = document.createElement('textarea'); ta.value = text; ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy') ? res() : rej(); } catch (e) { rej(e); } document.body.removeChild(ta);
+      });
+    }
+    document.querySelectorAll('.cite-btn').forEach(function (b) {
+      b.addEventListener('click', function () {
+        copy(b.dataset.cite).then(function () { showToast(T('Citation copied (APA)')); },
+          function () { window.prompt(T('Copy this citation:'), b.dataset.cite); });
+      });
+    });
+    document.getElementById('skipLink').addEventListener('click', function (e) {
+      e.preventDefault();
+      var sec = document.querySelector('main section.active') || document.getElementById('main');
+      if (!sec.hasAttribute('tabindex')) sec.setAttribute('tabindex', '-1');
+      sec.focus();
+    });
+  })();
 
   /* Live "neural activity to decoded speech" animation in the page cover */
   (function animateSignal() {

@@ -132,6 +132,10 @@ window.I18N_HU = {
   "Published": "Megjelent",
   "Under review": "Bírálat alatt",
   "Code": "Kód",
+  "Cite": "Hivatkozás",
+  "Citation copied (APA)": "Hivatkozás vágólapra másolva (APA)",
+  "Copy this citation:": "Másolja ki ezt a hivatkozást:",
+  "Skip to content": "Ugrás a tartalomra",
 
   /* ---------- CV ---------- */
   "Curriculum Vitae": "Önéletrajz",
