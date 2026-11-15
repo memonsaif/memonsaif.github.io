@@ -694,6 +694,16 @@
     nav a.active { background: var(--gold); border-color: var(--gold); color: var(--navy); }
     nav a.active .nav-ic { background: var(--navy); color: var(--gold); box-shadow: none; }
   }
+
+  /* ---------- Speaker at the end of the signal ---------- */
+  .speaker { flex: 0 0 96px; width: 96px; height: auto; overflow: visible; margin-top: -18px; }
+  .speaker .cone { fill: rgba(195,154,58,.18); stroke: var(--gold); stroke-width: 2; stroke-linejoin: round; }
+  .speaker .wire2 { fill: none; stroke: #b9d3f7; stroke-width: 1.4; stroke-dasharray: 3 3; animation: netFlow 1s linear infinite; }
+  .speaker .arcs path { fill: none; stroke: #e7d39c; stroke-width: 2.4; stroke-linecap: round; opacity: .15;
+    animation: arcPulse 1.8s ease-out infinite; animation-delay: calc(var(--k) * .22s); }
+  @keyframes arcPulse { 0% { opacity: .12; } 25% { opacity: 1; } 70%, 100% { opacity: .12; } }
+  @media (prefers-reduced-motion: reduce) { .speaker .arcs path { animation: none; opacity: .8; } .speaker .wire2 { animation: none; } }
+  @media (max-width: 860px) { .speaker { flex-basis: 46px; width: 46px; margin-top: -14px; } }
 </style>
 </head>
 <body>
@@ -773,6 +783,15 @@
         </svg>
         <figcaption class="signal-cap"><span>Neural activity</span><span>Decoded speech</span></figcaption>
       </figure>
+        <svg class="speaker" viewBox="0 0 100 100" role="img" aria-label="Loudspeaker playing the decoded speech">
+          <path class="wire2" d="M0,50 C8,50 10,50 18,50"/>
+          <path class="cone" d="M20,40 H32 L50,24 V76 L32,60 H20 Z"/>
+          <g class="arcs">
+            <path style="--k:0" d="M58,38 A16,16 0 0 1 58,62"/>
+            <path style="--k:1" d="M66,30 A26,26 0 0 1 66,70"/>
+            <path style="--k:2" d="M74,22 A36,36 0 0 1 74,78"/>
+          </g>
+        </svg>
         </div>
     </header>
 
@@ -1330,12 +1349,15 @@
         // speech side: syllable envelopes travelling away from the decoder
         env = 0.04;
         for (k3 = 0; k3 < SYL.length; k3++) {
-          c = 0.5 + ((k3 / SYL.length + t * 0.045) % 1) * 0.55;
+          c = 0.5 + ((k3 / SYL.length + t * 0.045) % 1) * 0.62;
           env += SYL[k3] * Math.exp(-Math.pow((x - c) / 0.03, 2)) * (0.75 + 0.25 * Math.sin(t * 1.7 + k3));
         }
         sp = env * Math.sin(2 * Math.PI * (x * 150 - t * 3));
         w = 1 / (1 + Math.exp(-(x - 0.5) * 22));
         y = (1 - w) * eeg * 0.85 + w * sp;
+        // gentle cosine fade-in / fade-out so the signal starts and ends cleanly
+        if (x < 0.06) y *= 0.5 - 0.5 * Math.cos(Math.PI * x / 0.06);
+        if (x > 0.90) y *= 0.5 + 0.5 * Math.cos(Math.PI * (x - 0.90) / 0.10);
         pts[i] = (x * W).toFixed(1) + ',' + (MID - y * AMP).toFixed(1);
       }
       trace.setAttribute('points', pts.join(' '));
