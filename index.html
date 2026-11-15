@@ -903,7 +903,30 @@
   /* ---------- Audio examples ---------- */
   .audio-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
   .audio-pair { background: var(--tile); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; display: grid; gap: 10px; }
-  .audio-word { font-family: var(--serif); color: var(--navy); font-size: 1.1rem; }
+  .audio-word { font-family: var(--serif); color: var(--navy); font-size: 1.05rem; font-weight: 600; }
+  .audio-grid { grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); margin-bottom: 10px; }
+  .audio-spec { position: relative; border-radius: 8px; overflow: hidden; border: 1px solid var(--line); background: #fff; }
+  .audio-spec img { width: 100%; display: block; aspect-ratio: 660 / 286; }
+  .audio-spec span { position: absolute; left: 6px; font-size: .68rem; font-weight: 600; padding: 1px 6px; border-radius: 4px; background: rgba(255,255,255,.85); color: var(--navy); }
+  .audio-spec .s1 { top: 5px; } .audio-spec .s2 { top: calc(50% + 5px); color: #8a6a1e; }
+  .audio-btns { display: grid; gap: 6px; }
+  .play-btn {
+    display: flex; align-items: center; gap: 8px; font: inherit; font-size: .84rem; font-weight: 600; cursor: pointer;
+    border: 1px solid var(--navy); background: #fff; color: var(--navy); border-radius: 999px; padding: 6px 12px; text-align: left;
+    transition: background .2s ease, color .2s ease;
+  }
+  .play-btn i { width: 14px; color: var(--accent); }
+  .play-btn.dec { border-color: var(--gold); }
+  .play-btn.dec i { color: var(--gold); }
+  .play-btn:hover { background: var(--accent-soft); }
+  .play-btn.playing { background: var(--navy); color: #fff; }
+  .play-btn.playing i { color: var(--gold); }
+  .audio-note { font-size: .88rem; color: var(--muted); margin: 6px 0 10px; }
+  .audio-full { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 8px; }
+  .audio-full label { display: grid; gap: 4px; font-size: .8rem; font-weight: 600; color: var(--muted); background: var(--tile); border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; }
+  .audio-full .dec { color: #8a6a1e; }
+  .audio-full audio { width: 100%; height: 36px; }
+  @media (max-width: 860px) { .audio-full { grid-template-columns: 1fr; } }
   .audio-pair label { display: grid; gap: 4px; font-size: .8rem; color: var(--muted); font-weight: 600; }
   .audio-pair .dec { color: var(--gold); }
   .audio-pair audio { width: 100%; height: 36px; }
@@ -1094,8 +1117,10 @@
 
       <div class="audio-demo" id="audioDemo" hidden>
         <h3>Listen: original and decoded speech</h3>
-        <p>Examples from the SPECOM 2026 study. Each pair plays the spoken word first, then the speech reconstructed from brain activity alone.</p>
+        <p>Examples from one participant (sub-06) in the SPECOM 2026 study. For each word you can hear the original speech, resynthesized from its audio features, and the speech the decoder reconstructed from brain activity alone. The pictures show both as spectrograms.</p>
         <div class="audio-grid" id="audioGrid"></div>
+        <p class="audio-note">These three words are among the clearest examples. To hear typical performance, listen to the full five-minute recordings, which include every word.</p>
+        <div class="audio-full" id="audioFull"></div>
       </div>
 
       <h3>Key findings</h3>
@@ -1649,18 +1674,43 @@
      { word: "example", original: "audio/ex1-original.wav", decoded: "audio/ex1-decoded.wav" },
      The section stays hidden while this list is empty. */
   var AUDIO = [
+    { label: "Word 1", original: "audio/ex1-original.mp3", decoded: "audio/ex1-decoded.mp3", spec: "audio/ex1-spec.jpg" },
+    { label: "Word 2", original: "audio/ex2-original.mp3", decoded: "audio/ex2-decoded.mp3", spec: "audio/ex2-spec.jpg" },
+    { label: "Word 3", original: "audio/ex3-original.mp3", decoded: "audio/ex3-decoded.mp3", spec: "audio/ex3-spec.jpg" }
   ];
+  var AUDIO_FULL = { original: "audio/sub06-full-original.mp3", decoded: "audio/sub06-full-decoded.mp3" };
   (function renderAudio() {
     if (!AUDIO.length) return;
     var box = document.getElementById('audioDemo'), grid = document.getElementById('audioGrid');
     grid.innerHTML = AUDIO.map(function (a) {
-      return '<div class="audio-pair">' + (a.word ? '<div class="audio-word">“' + esc(a.word) + '”</div>' : '') +
-        '<label><span>' + T('Original') + '</span><audio controls preload="none" src="' + a.original + '"></audio></label>' +
-        '<label><span class="dec">' + T('Decoded from brain activity') + '</span><audio controls preload="none" src="' + a.decoded + '"></audio></label></div>';
+      return '<div class="audio-pair">' +
+        '<div class="audio-word">' + esc(T(a.label || '')) + '</div>' +
+        (a.spec ? '<div class="audio-spec"><img src="' + a.spec + '" alt="" loading="lazy"><span class="s1">' + T('Original') + '</span><span class="s2">' + T('Decoded') + '</span></div>' : '') +
+        '<div class="audio-btns">' +
+          '<button type="button" class="play-btn" data-src="' + a.original + '"><i class="fa-solid fa-play"></i> ' + T('Original') + '</button>' +
+          '<button type="button" class="play-btn dec" data-src="' + a.decoded + '"><i class="fa-solid fa-play"></i> ' + T('Decoded from brain activity') + '</button>' +
+        '</div></div>';
     }).join('');
+    if (AUDIO_FULL) {
+      document.getElementById('audioFull').innerHTML =
+        '<label><span>' + T('Full recording: original') + '</span><audio controls preload="none" src="' + AUDIO_FULL.original + '"></audio></label>' +
+        '<label><span class="dec">' + T('Full recording: decoded from brain activity') + '</span><audio controls preload="none" src="' + AUDIO_FULL.decoded + '"></audio></label>';
+    }
     box.hidden = false;
-    grid.addEventListener('play', function (e) {
-      grid.querySelectorAll('audio').forEach(function (x) { if (x !== e.target) x.pause(); });
+    var player = new Audio(), current = null;
+    function reset() { if (current) { current.classList.remove('playing'); current.querySelector('i').className = 'fa-solid fa-play'; } current = null; }
+    player.addEventListener('ended', reset);
+    grid.addEventListener('click', function (e) {
+      var b = e.target.closest('.play-btn'); if (!b) return;
+      if (current === b) { player.pause(); reset(); return; }
+      reset(); document.querySelectorAll('#audioFull audio').forEach(function (x) { x.pause(); });
+      player.src = b.dataset.src; player.play(); current = b;
+      b.classList.add('playing'); b.querySelector('i').className = 'fa-solid fa-pause';
+    });
+    box.addEventListener('play', function (e) {
+      if (e.target.tagName !== 'AUDIO') return;
+      player.pause(); reset();
+      box.querySelectorAll('audio').forEach(function (x) { if (x !== e.target) x.pause(); });
     }, true);
   })();
 
