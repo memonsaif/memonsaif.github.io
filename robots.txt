@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://memonsaif.github.io/sitemap.xml

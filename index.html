@@ -10,6 +10,10 @@
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <meta name="theme-color" content="#14284b">
+<meta name="author" content="Saifullah Memon">
+<meta name="keywords" content="Saifullah Memon, neural speech decoding, brain-computer interface, iEEG, EEG, deep learning, BME, TMIT, SmartLab">
+<link rel="alternate" hreflang="en" href="https://memonsaif.github.io/">
+<link rel="alternate" hreflang="hu" href="https://memonsaif.github.io/?lang=hu">
 <meta property="og:type" content="profile">
 <meta property="og:site_name" content="Saifullah Memon">
 <meta property="og:title" content="Saifullah Memon | PhD Researcher, Neural Speech Decoding">
@@ -880,7 +884,59 @@
     h3 { break-after: avoid; }
     * { animation: none !important; transition: none !important; }
   }
+  /* ---------- Language switch ---------- */
+  .page-band { position: relative; }
+  .lang-switch {
+    position: absolute; top: 22px; right: 26px; z-index: 5; display: flex; padding: 3px; gap: 2px;
+    border-radius: 999px; background: rgba(8, 18, 38, .35); border: 1px solid rgba(255,255,255,.14);
+  }
+  .lang-switch button {
+    font: inherit; font-size: .78rem; font-weight: 600; letter-spacing: .04em; cursor: pointer;
+    border: 0; border-radius: 999px; padding: 5px 11px; background: transparent; color: #c4d0e4;
+    transition: background .25s ease, color .25s ease;
+  }
+  .lang-switch button:hover { color: #fff; }
+  .lang-switch button.on { background: var(--gold); color: var(--navy); }
+  .lang-switch button:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+  @media (max-width: 860px) { .lang-switch { top: 14px; right: 14px; } }
+
+  /* ---------- Audio examples ---------- */
+  .audio-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+  .audio-pair { background: var(--tile); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; display: grid; gap: 10px; }
+  .audio-word { font-family: var(--serif); color: var(--navy); font-size: 1.1rem; }
+  .audio-pair label { display: grid; gap: 4px; font-size: .8rem; color: var(--muted); font-weight: 600; }
+  .audio-pair .dec { color: var(--gold); }
+  .audio-pair audio { width: 100%; height: 36px; }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Saifullah Memon",
+  "url": "https://memonsaif.github.io/",
+  "image": "https://memonsaif.github.io/photo.jpg",
+  "jobTitle": "PhD Researcher in Neural Speech Decoding",
+  "email": "mailto:saifullah.memon@tmit.bme.hu",
+  "affiliation": {
+    "@type": "Organization",
+    "name": "Speech Technology and Smart Interactions Laboratory (SmartLab), Department of Telecommunications and Artificial Intelligence (TMIT)",
+    "url": "https://smartlab.tmit.bme.hu/",
+    "parentOrganization": { "@type": "CollegeOrUniversity", "name": "Budapest University of Technology and Economics", "url": "https://www.bme.hu/en" }
+  },
+  "alumniOf": [
+    { "@type": "CollegeOrUniversity", "name": "Óbuda University" },
+    { "@type": "CollegeOrUniversity", "name": "Mehran University of Engineering and Technology" }
+  ],
+  "knowsAbout": ["Neural speech decoding", "Brain–computer interfaces", "Intracranial EEG", "EEG", "Deep learning", "Speech technology"],
+  "sameAs": [
+    "https://scholar.google.com/citations?user=OomReesAAAAJ",
+    "https://orcid.org/0009-0007-6513-3938",
+    "https://www.researchgate.net/profile/Saifullah-Memon",
+    "https://www.linkedin.com/in/saifullah-memon-55446785",
+    "https://github.com/memonsaif"
+  ]
+}
+</script>
 </head>
 <body>
 <div class="layout">
@@ -912,6 +968,9 @@
   <!-- ===================== CONTENT ===================== -->
   <main>
     <header class="page-band">
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button type="button" data-lang="en" lang="en">EN</button><button type="button" data-lang="hu" lang="hu">HU</button>
+      </div>
       <h1 id="bandTitle">Biography</h1>
       <p id="bandSub"></p>
         <div class="signal-row">
@@ -975,14 +1034,14 @@
     <!-- ========== HOME ========== -->
     <section id="home">
       <h2>Biography</h2>
-      <p>I am a PhD researcher in Electrical Engineering and Informatics at the <a href="https://www.bme.hu/en" target="_blank" rel="noopener">Budapest University of Technology and Economics (BME)</a>, Hungary, and a member of the <a href="https://smartlab.tmit.bme.hu/" target="_blank" rel="noopener">Speech Technology and Smart Interactions Laboratory (SmartLab)</a> in the <a href="https://www.tmit.bme.hu/" target="_blank" rel="noopener">Department of Telecommunications and Artificial Intelligence (TMIT)</a>, a group working on speech synthesis and speech technology.</p>
+      <p id="bio-intro">I am a PhD researcher in Electrical Engineering and Informatics at the <a href="https://www.bme.hu/en" target="_blank" rel="noopener">Budapest University of Technology and Economics (BME)</a>, Hungary, and a member of the <a href="https://smartlab.tmit.bme.hu/" target="_blank" rel="noopener">Speech Technology and Smart Interactions Laboratory (SmartLab)</a> in the <a href="https://www.tmit.bme.hu/" target="_blank" rel="noopener">Department of Telecommunications and Artificial Intelligence (TMIT)</a>, a group working on speech synthesis and speech technology.</p>
       <p>My research focuses on neural speech decoding: using deep learning to turn intracranial EEG (iEEG) and EEG signals into speech. I work on lightweight decoders, on learning from limited labelled data, and on the reliable evaluation of imagined speech decoding, with the long-term goal of brain–computer interfaces that can restore communication.</p>
       <p>Before my PhD, I earned an MSc in Mechatronics Engineering from Óbuda University, Budapest, and a BE in Electronics Engineering from Mehran University of Engineering and Technology, Pakistan, and spent three years as a Lecturer in Computer Systems Engineering at Balochistan University of Engineering and Technology (BUET), Pakistan. At BME, I support teaching in Deep Learning, Infocommunication and Speech Information Systems, and supervise master's students in the project lab.</p>
 
       <h3>News</h3>
       <ul class="news">
         <li><span class="date">2026</span><span><strong>Presented at SPECOM 2026 in Ohrid, North Macedonia</strong><br>A Lightweight LSTM-Based iEEG-to-Speech Decoder with Event-Level Unseen Neural Pattern Detection<br><em>Speech and Computer (SPECOM 2026), Springer LNCS</em><br><span class="news-auth">Saifullah Memon, Mohammed Salah Al-Radhi</span></span></li>
-        <li><span class="date">2026</span><span><strong>Two review articles submitted</strong><br>To <em>Neuroscience Informatics</em> and <em>AI</em> (MDPI). See <a href="#publications">Publications</a>.</span></li>
+        <li><span class="date">2026</span><span id="news-reviews"><strong>Two review articles submitted</strong><br>To <em>Neuroscience Informatics</em> and <em>AI</em> (MDPI). See <a href="#publications">Publications</a>.</span></li>
         <li><span class="date">2025</span><span><strong>PhD started at BME</strong><br>Began doctoral studies in Electrical Engineering and Informatics and joined SmartLab at TMIT.</span></li>
       </ul>
 
@@ -1032,6 +1091,12 @@
         </li>
       </ol>
       <div class="branch"><strong>Reliability check.</strong> The reconstruction error, added up over each word, works as a confidence score. It helps flag brain activity from people the model has never seen.</div>
+
+      <div class="audio-demo" id="audioDemo" hidden>
+        <h3>Listen: original and decoded speech</h3>
+        <p>Examples from the SPECOM 2026 study. Each pair plays the spoken word first, then the speech reconstructed from brain activity alone.</p>
+        <div class="audio-grid" id="audioGrid"></div>
+      </div>
 
       <h3>Key findings</h3>
       <ul class="findings">
@@ -1399,7 +1464,45 @@
   <button class="lb-next" aria-label="Next" onclick="stepLightbox(1)"><i class="fa-solid fa-chevron-right"></i></button>
 </div>
 
+<script src="assets/i18n-hu.js"></script>
 <script>
+  /* ================= LANGUAGE (EN / HU) ================= */
+  var LANG = 'en';
+  (function () {
+    var q = new URLSearchParams(location.search).get('lang');
+    try { if (q) localStorage.setItem('lang', q); LANG = q || localStorage.getItem('lang') || 'en'; } catch (e) { LANG = q || 'en'; }
+    if (LANG !== 'hu' || !window.I18N_HU) LANG = 'en';
+  })();
+  function T(t) { return (LANG === 'hu' && window.I18N_HU && I18N_HU[t]) || t; }
+  (function applyLang() {
+    document.querySelectorAll('.lang-switch button').forEach(function (b) {
+      b.classList.toggle('on', b.dataset.lang === LANG);
+      b.setAttribute('aria-pressed', b.dataset.lang === LANG);
+      b.addEventListener('click', function () {
+        if (b.dataset.lang === LANG) return;
+        try { localStorage.setItem('lang', b.dataset.lang); } catch (e) {}
+        var u = new URL(location.href); u.searchParams.delete('lang');
+        if (b.dataset.lang === 'hu') u.searchParams.set('lang', 'hu'); else u.searchParams.set('lang', 'en');
+        location.href = u.toString();
+      });
+    });
+    if (LANG !== 'hu') return;
+    document.documentElement.lang = 'hu';
+    document.title = 'Saifullah Memon | PhD-kutató, neurális beszéddekódolás';
+    Object.keys(window.I18N_HU_HTML || {}).forEach(function (id) {
+      var el = document.getElementById(id); if (el) el.innerHTML = I18N_HU_HTML[id];
+    });
+    var w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) { return (n.parentElement && n.parentElement.closest('script,style,pre,svg')) ? 2 : 1; }
+    }), n, list = [];
+    while ((n = w.nextNode())) list.push(n);
+    list.forEach(function (n) {
+      var raw = n.nodeValue, t = raw.trim(); if (!t) return;
+      var h = I18N_HU[t]; if (!h) return;
+      n.nodeValue = raw.replace(t, h);
+    });
+  })();
+
   /* ================= GALLERY PHOTOS =================
      To add a photo: upload it into the "gallery" folder of the repository,
      then add one line below. category is "academic" or "memories".
@@ -1426,22 +1529,22 @@
     clearTimeout(gTimer);
     if (!lbList.length) {
       stage.style.display = 'none';
-      grid.innerHTML = '<div class="g-empty" style="grid-column:1/-1"><i class="fa-regular fa-images"></i>Photos coming soon.</div>';
+      grid.innerHTML = '<div class="g-empty" style="grid-column:1/-1"><i class="fa-regular fa-images"></i>' + T('Photos coming soon.') + '</div>';
       return;
     }
     stage.style.display = '';
     slides.innerHTML = lbList.map(function (p, i) {
       return '<div class="g-slide" data-i="' + i + '" style="--kb-origin:' + ORIGINS[i % ORIGINS.length] + '">' +
         '<img class="bg" src="' + thumbOf(p.src) + '" alt="" aria-hidden="true"' + (i ? ' loading="lazy"' : '') + '>' +
-        '<img class="fg" src="' + p.src + '" alt="' + esc(p.caption) + '"' + (i ? ' loading="lazy"' : '') + '>' +
+        '<img class="fg" src="' + p.src + '" alt="' + esc(T(p.caption)) + '"' + (i ? ' loading="lazy"' : '') + '>' +
         '<div class="shade"></div>' +
-        '<div class="cap">' + (p.date ? '<span class="when">' + esc(p.date) + '</span>' : '') + '<p>' + esc(p.caption) + '</p></div></div>';
+        '<div class="cap">' + (p.date ? '<span class="when">' + esc(p.date) + '</span>' : '') + '<p>' + esc(T(p.caption)) + '</p></div></div>';
     }).join('');
     prog.innerHTML = lbList.map(function (p, i) { return '<button aria-label="Show photo ' + (i + 1) + '" data-i="' + i + '"></button>'; }).join('');
     grid.innerHTML = lbList.map(function (p, i) {
-      return '<button class="g-thumb" style="--i:' + i + '" data-i="' + i + '" aria-label="' + esc(p.caption) + '">' +
+      return '<button class="g-thumb" style="--i:' + i + '" data-i="' + i + '" aria-label="' + esc(T(p.caption)) + '">' +
         '<img src="' + thumbOf(p.src) + '" alt="" loading="lazy"' + (p.pos ? ' style="object-position:' + p.pos + '"' : '') + '>' +
-        '<span>' + esc(p.caption) + '</span></button>';
+        '<span>' + esc(T(p.caption)) + '</span></button>';
     }).join('');
     stage.classList.remove('g-fade'); void stage.offsetWidth; stage.classList.add('g-fade');
     goSlide(0);
@@ -1513,9 +1616,9 @@
   function showLb(d) {
     var p = lbList[lbIndex], img = document.getElementById('lbImg');
     img.classList.remove('swap-l', 'swap-r'); void img.offsetWidth;
-    img.src = p.src; img.alt = p.caption || '';
+    img.src = p.src; img.alt = T(p.caption || '');
     if (d && !REDUCE) img.classList.add(d > 0 ? 'swap-r' : 'swap-l');
-    document.getElementById('lbCap').textContent = (p.caption || '') + (p.date ? ', ' + p.date : '');
+    document.getElementById('lbCap').textContent = T(p.caption || '') + (p.date ? ', ' + p.date : '');
     document.getElementById('lbCount').textContent = (lbIndex + 1) + ' / ' + lbList.length;
   }
   document.getElementById('galleryFilters').addEventListener('click', function (e) {
@@ -1540,6 +1643,37 @@
     if (e.key === 'ArrowRight') stepLightbox(1);
   });
   renderGallery();
+
+  /* ================= AUDIO EXAMPLES (Research page) =================
+     Put audio files in the "audio" folder and add one line per example, e.g.
+     { word: "example", original: "audio/ex1-original.wav", decoded: "audio/ex1-decoded.wav" },
+     The section stays hidden while this list is empty. */
+  var AUDIO = [
+  ];
+  (function renderAudio() {
+    if (!AUDIO.length) return;
+    var box = document.getElementById('audioDemo'), grid = document.getElementById('audioGrid');
+    grid.innerHTML = AUDIO.map(function (a) {
+      return '<div class="audio-pair">' + (a.word ? '<div class="audio-word">“' + esc(a.word) + '”</div>' : '') +
+        '<label><span>' + T('Original') + '</span><audio controls preload="none" src="' + a.original + '"></audio></label>' +
+        '<label><span class="dec">' + T('Decoded from brain activity') + '</span><audio controls preload="none" src="' + a.decoded + '"></audio></label></div>';
+    }).join('');
+    box.hidden = false;
+    grid.addEventListener('play', function (e) {
+      grid.querySelectorAll('audio').forEach(function (x) { if (x !== e.target) x.pause(); });
+    }, true);
+  })();
+
+  /* ================= VISITOR STATISTICS: one entry per page ================= */
+  var gcLast = null;
+  window.gcTrack = function () {
+    if (!window.goatcounter || !goatcounter.count) return;
+    var id = (location.hash || '#home').slice(1);
+    if (!document.getElementById(id)) id = 'home';
+    var path = id === 'home' ? '/' : '/' + id;
+    if (path === gcLast) return; gcLast = path;
+    goatcounter.count({ path: path, title: 'Saifullah Memon – ' + id });
+  };
 
   /* Live "neural activity to decoded speech" animation in the page cover */
   (function animateSignal() {
@@ -1625,8 +1759,9 @@
     movePill();
     var h = document.querySelector('#' + target + ' > h2');
     document.getElementById('bandTitle').textContent = h ? h.textContent : '';
-    document.getElementById('bandSub').textContent = BAND_SUB[target] || '';
+    document.getElementById('bandSub').textContent = T(BAND_SUB[target] || '');
     if (target === 'gallery' && typeof goSlide === 'function') goSlide(gIndex);
+    if (window.gcTrack) window.gcTrack();
   }
   var BAND_SUB = {
     home: 'PhD researcher in neural speech decoding at the Budapest University of Technology and Economics',
@@ -1688,12 +1823,12 @@
       form.name.closest('.fb-field').classList.toggle('invalid', !nm);
       form.email.closest('.fb-field').classList.toggle('invalid', !emailOk);
       form.message.closest('.fb-field').classList.toggle('invalid', !msg);
-      if (!nm) { err.textContent = 'Please enter your name.'; form.name.focus(); return; }
-      if (!em) { err.textContent = 'Please enter your email address.'; form.email.focus(); return; }
-      if (!emailOk) { err.textContent = 'Please check the email address.'; form.email.focus(); return; }
-      if (!msg) { err.textContent = 'Please write a message before sending.'; form.message.focus(); return; }
+      if (!nm) { err.textContent = T('Please enter your name.'); form.name.focus(); return; }
+      if (!em) { err.textContent = T('Please enter your email address.'); form.email.focus(); return; }
+      if (!emailOk) { err.textContent = T('Please check the email address.'); form.email.focus(); return; }
+      if (!msg) { err.textContent = T('Please write a message before sending.'); form.message.focus(); return; }
       if (form._honey.value) return;
-      err.textContent = ''; send.classList.add('sending'); send.querySelector('span').textContent = 'Sending…';
+      err.textContent = ''; send.classList.add('sending'); send.querySelector('span').textContent = T('Sending…');
       var type = form.querySelector('input[name=type]:checked').value;
       var data = {
         _subject: 'Website ' + type.toLowerCase() + ' from ' + nm,
@@ -1709,13 +1844,13 @@
         })
         .catch(function (e) {
           var why = (e && e.message && e.message !== 'failed' && e.message !== 'Failed to fetch') ? ' (' + String(e.message).replace(/[<>]/g, '') + ')' : '';
-          err.innerHTML = 'Sorry, the message could not be sent' + why + '. Please email me at <a href="mailto:saifullah.memon@tmit.bme.hu">saifullah.memon@tmit.bme.hu</a>.';
+          err.innerHTML = T('Sorry, the message could not be sent') + why + T('. Please email me at ') + '<a href="mailto:saifullah.memon@tmit.bme.hu">saifullah.memon@tmit.bme.hu</a>.';
           if (window.console) console.warn('Feedback form error:', e);
         })
-        .then(function () { send.classList.remove('sending'); send.querySelector('span').textContent = 'Send message'; });
+        .then(function () { send.classList.remove('sending'); send.querySelector('span').textContent = T('Send message'); });
     });
   })();
 </script>
-<script data-goatcounter="https://memonsaif.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script data-goatcounter="https://memonsaif.goatcounter.com/count" data-goatcounter-settings='{"no_onload": true}' async src="//gc.zgo.at/count.js" onload="window.gcTrack && window.gcTrack()"></script>
 </body>
 </html>
